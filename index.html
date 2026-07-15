@@ -1,0 +1,152 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Nina Shi | Nina's Planet</title>
+    <meta
+      name="description"
+      content="Nina's Planet is a small green world for curiosity, beauty, and things still becoming."
+    />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <main class="planet-shell" aria-live="polite">
+      <section class="welcome-screen" aria-label="Welcome to Nina's Planet">
+        <nav class="topbar" aria-label="Primary navigation">
+          <a class="brand" href="#" aria-label="Nina Shi home">
+            <span>Nina Shi</span>
+            <i aria-hidden="true"></i>
+          </a>
+          <div class="nav-links" aria-label="Site sections">
+            <a href="#about" data-action="enter-site">About</a>
+            <a href="#made" data-action="enter-site">Made Things</a>
+            <a href="#notes" data-action="enter-site">Field Notes</a>
+            <a href="#journeys" data-action="enter-site">Journeys</a>
+          </div>
+        </nav>
+
+        <div class="world-stage" aria-hidden="true"></div>
+        <div class="mist-layer" aria-hidden="true">
+          <span class="mist mist-left"></span>
+          <span class="mist mist-right"></span>
+          <span class="mist mist-center"></span>
+        </div>
+        <div class="bird-layer" aria-hidden="true">
+          <svg class="golden-bird bird-large bird-solid" viewBox="0 0 96 44">
+            <g class="bird-shape">
+              <path class="bird-wing bird-wing-left" d="M47 22 C33 5 16 5 2 18 C20 16 33 22 45 31 C46 28 47 25 47 22Z" />
+              <path class="bird-wing bird-wing-right" d="M49 22 C63 5 80 5 94 18 C76 16 63 22 51 31 C50 28 49 25 49 22Z" />
+              <path class="bird-body" d="M38 25 C43 18 53 18 58 25 C54 32 43 32 38 25Z" />
+            </g>
+          </svg>
+          <svg class="golden-bird bird-medium bird-outline" viewBox="0 0 96 44">
+            <g class="bird-shape">
+              <path class="bird-wing bird-wing-left" d="M48 23 C35 8 19 8 5 18 C22 18 34 23 45 31" />
+              <path class="bird-wing bird-wing-right" d="M48 23 C61 8 77 8 91 18 C74 18 62 23 51 31" />
+              <path class="bird-body" d="M39 25 C44 20 52 20 57 25 C53 30 44 30 39 25Z" />
+            </g>
+          </svg>
+          <svg class="golden-bird bird-small bird-outline" viewBox="0 0 96 44">
+            <g class="bird-shape">
+              <path class="bird-wing bird-wing-left" d="M48 23 C36 10 21 11 8 19 C24 19 35 24 46 30" />
+              <path class="bird-wing bird-wing-right" d="M48 23 C60 10 75 11 88 19 C72 19 61 24 50 30" />
+              <path class="bird-body" d="M40 25 C44 21 52 21 56 25 C52 29 44 29 40 25Z" />
+            </g>
+          </svg>
+        </div>
+        <div class="firefly-layer" aria-hidden="true">
+          <span class="firefly"></span>
+          <span class="firefly"></span>
+          <span class="firefly"></span>
+          <span class="firefly"></span>
+          <span class="firefly"></span>
+          <span class="firefly"></span>
+          <span class="firefly"></span>
+          <span class="firefly"></span>
+        </div>
+        <div class="pollen-layer" aria-hidden="true">
+          <span class="pollen"></span>
+          <span class="pollen"></span>
+          <span class="pollen"></span>
+          <span class="pollen"></span>
+          <span class="pollen"></span>
+          <span class="pollen"></span>
+          <span class="pollen"></span>
+          <span class="pollen"></span>
+          <span class="pollen"></span>
+          <span class="pollen"></span>
+          <span class="pollen"></span>
+          <span class="pollen"></span>
+        </div>
+        <button class="easter egg-camera" type="button" aria-label="Discover the tiny camera" data-note="A tiny camera, for collecting light."></button>
+        <button class="easter egg-sign" type="button" aria-label="Discover the quiet sign" data-note="Please don't step on the functions."></button>
+        <button class="easter egg-coffee" type="button" aria-label="Discover the coffee cup" data-note="Coffee into fuel, ideas into motion."></button>
+        <button class="easter egg-star" type="button" aria-label="Discover the hidden geometry" data-note="A small hidden proof that beauty has structure."></button>
+
+        <div class="intro">
+          <p class="eyebrow">Welcome to</p>
+          <h1>Nina's Planet</h1>
+          <p class="tagline">
+            A small green world for curiosity, beauty, and things still becoming.
+          </p>
+          <a class="explore-button" href="#world-map" aria-label="Explore Nina's Planet" data-action="enter-site">
+            <span>Explore</span>
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <path d="M5 12h13m-5-5 5 5-5 5" />
+            </svg>
+          </a>
+        </div>
+
+        <div class="coordinates" aria-label="A small location marker">
+          <span>Planet N-07</span>
+          <span>Sector 23E</span>
+        </div>
+      </section>
+
+      <section class="explore-screen" id="world-map" aria-label="Explore Nina's world">
+        <div class="explore-inner">
+          <header class="explore-header">
+            <p class="eyebrow">You are now inside</p>
+            <h2>A World In Progress</h2>
+            <p>
+              A quiet map of the things I make, notice, learn, collect, and become.
+            </p>
+          </header>
+
+          <div class="map-grid">
+            <a class="place place-large" id="about" href="#about">
+              <span class="place-kicker">01</span>
+              <h3>About</h3>
+              <p>Values, story, and the kind of person I am growing into.</p>
+            </a>
+            <a class="place" id="made" href="#made">
+              <span class="place-kicker">02</span>
+              <h3>Made Things</h3>
+              <p>Projects, experiments, designs, and ideas made tangible.</p>
+            </a>
+            <a class="place" id="journeys" href="#journeys">
+              <span class="place-kicker">03</span>
+              <h3>Journeys</h3>
+              <p>Travel, photography, places, color, light, and memory.</p>
+            </a>
+            <a class="place" id="notes" href="#notes">
+              <span class="place-kicker">04</span>
+              <h3>Field Notes</h3>
+              <p>Thoughts on learning, living, creating, and paying attention.</p>
+            </a>
+            <a class="place" id="collected" href="#collected">
+              <span class="place-kicker">05</span>
+              <h3>Collected Light</h3>
+              <p>Little discoveries, references, quotes, and beautiful fragments.</p>
+            </a>
+          </div>
+        </div>
+      </section>
+
+      <p class="discovery-toast" role="status"></p>
+    </main>
+
+    <script src="script.js" defer></script>
+  </body>
+</html>
