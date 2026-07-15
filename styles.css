@@ -81,10 +81,12 @@ button {
 
 .welcome-screen::after {
   position: absolute;
-  inset: auto 0 0;
+  right: 0;
+  bottom: 0;
   z-index: 1;
-  height: 28vh;
-  background: linear-gradient(0deg, rgba(245, 247, 235, 0.3), transparent);
+  width: 34vw;
+  height: 30vh;
+  background: radial-gradient(ellipse at 100% 100%, rgba(245, 247, 235, 0.34), rgba(245, 247, 235, 0.16) 42%, transparent 72%);
   content: "";
   pointer-events: none;
 }
@@ -155,8 +157,8 @@ button {
   z-index: 0;
   pointer-events: none;
   transform-origin: 72% 54%;
-  background: url("assets/ninas-planet-hero.png") 57% 50% / 106% auto no-repeat;
-  filter: saturate(0.78) contrast(0.88) brightness(1.01);
+  background: url("assets/ninas-planet-hero.png") center center / cover no-repeat;
+  filter: sepia(0.075) saturate(1.04) contrast(0.88) brightness(1.01);
   animation: hero-float 19s ease-in-out infinite;
   will-change: opacity, transform;
   transition: transform 520ms cubic-bezier(0.45, 0, 0.18, 1), opacity 600ms cubic-bezier(0.45, 0, 0.18, 1);
@@ -168,15 +170,22 @@ button {
   z-index: 1;
   pointer-events: none;
   transform-origin: 72% 54%;
-  background:
-    linear-gradient(90deg, rgba(249, 247, 237, 0.8) 0%, rgba(249, 247, 237, 0.62) 22%, rgba(249, 247, 237, 0.36) 42%, rgba(249, 247, 237, 0) 68%),
-    url("assets/ninas-planet-hero.png") 57% 50% / 106% auto no-repeat;
-  filter: saturate(0.72) contrast(0.82) brightness(1.04);
-  opacity: 0.86;
-  mask-image: linear-gradient(90deg, #000 0%, #000 34%, rgba(0, 0, 0, 0.78) 45%, rgba(0, 0, 0, 0.3) 56%, transparent 68%);
-  -webkit-mask-image: linear-gradient(90deg, #000 0%, #000 34%, rgba(0, 0, 0, 0.78) 45%, rgba(0, 0, 0, 0.3) 56%, transparent 68%);
+  background: linear-gradient(90deg, rgba(252, 250, 241, 0) 0%, rgba(252, 250, 241, 0) 3.4rem, rgba(252, 250, 241, 0.94) 8.5rem, rgba(252, 250, 241, 0.88) 24%, rgba(249, 247, 237, 0.6) 43%, rgba(249, 247, 237, 0.24) 60%, rgba(249, 247, 237, 0) 74%);
+  opacity: 1;
   will-change: opacity, transform;
   transition: transform 520ms cubic-bezier(0.45, 0, 0.18, 1), opacity 600ms cubic-bezier(0.45, 0, 0.18, 1);
+}
+
+.world-softener::after {
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(circle at 61% 16%, rgba(235, 190, 83, 0.16), transparent 7rem),
+    radial-gradient(circle at 59% 57%, rgba(232, 198, 112, 0.1), transparent 16rem),
+    linear-gradient(90deg, transparent 40%, rgba(236, 202, 118, 0.07) 58%, transparent 82%);
+  content: "";
+  mix-blend-mode: soft-light;
+  pointer-events: none;
 }
 
 .mist-layer {
