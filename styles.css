@@ -165,7 +165,6 @@ button {
   transform-origin: 72% 54%;
   background: url("assets/ninas-planet-hero.png") center center / cover no-repeat;
   filter: sepia(0.095) saturate(1.08) contrast(0.88) brightness(1.01);
-  animation: hero-float 19s ease-in-out infinite;
   will-change: opacity, transform;
   transition: transform 520ms cubic-bezier(0.45, 0, 0.18, 1), opacity 600ms cubic-bezier(0.45, 0, 0.18, 1);
 }
@@ -482,16 +481,6 @@ body.site-entered .welcome-screen {
   }
   50% {
     filter: brightness(1.005);
-  }
-}
-
-@keyframes hero-float {
-  0%,
-  100% {
-    transform: translate3d(0, 0, 0);
-  }
-  50% {
-    transform: translate3d(0, -2px, 0);
   }
 }
 
