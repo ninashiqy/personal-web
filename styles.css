@@ -429,6 +429,10 @@ body.hero-zooming .world-softener {
   transform: scale(1.05);
 }
 
+body.hero-fading .welcome-screen {
+  opacity: 0;
+}
+
 body.hero-fading .world-stage {
   opacity: 0;
 }
