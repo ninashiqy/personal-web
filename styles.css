@@ -73,6 +73,7 @@ button {
   inset: 0;
   z-index: 1;
   background:
+    radial-gradient(ellipse 18rem 7rem at 16% 100%, rgba(25, 70, 50, 0.2), rgba(47, 91, 64, 0.1) 46%, transparent 76%),
     linear-gradient(18deg, rgba(232, 190, 82, 0.13) 0%, rgba(232, 190, 82, 0.08) 13%, rgba(232, 190, 82, 0.035) 24%, transparent 34%),
     linear-gradient(31deg, rgba(232, 190, 82, 0.08) 0%, rgba(232, 190, 82, 0.04) 16%, transparent 29%),
     radial-gradient(ellipse at 11% 96%, rgba(232, 190, 82, 0.08), rgba(232, 190, 82, 0.035) 7rem, transparent 15rem),
@@ -163,7 +164,7 @@ button {
   pointer-events: none;
   transform-origin: 72% 54%;
   background: url("assets/ninas-planet-hero.png") center center / cover no-repeat;
-  filter: sepia(0.075) saturate(1.04) contrast(0.88) brightness(1.01);
+  filter: sepia(0.095) saturate(1.08) contrast(0.88) brightness(1.01);
   animation: hero-float 19s ease-in-out infinite;
   will-change: opacity, transform;
   transition: transform 520ms cubic-bezier(0.45, 0, 0.18, 1), opacity 600ms cubic-bezier(0.45, 0, 0.18, 1);
@@ -358,6 +359,7 @@ h1 {
   display: inline-flex;
   align-items: center;
   justify-content: center;
+  transform: translateY(-0.55rem);
   gap: 1.2rem;
   min-width: 12.35rem;
   min-height: 3.4rem;
@@ -384,7 +386,7 @@ h1 {
 .explore-button:focus-visible {
   background: rgba(255, 253, 244, 0.72);
   box-shadow: 0 14px 36px rgba(38, 75, 63, 0.14);
-  transform: translateY(-2px);
+  transform: translateY(calc(-0.55rem - 2px));
 }
 
 .coordinates {
