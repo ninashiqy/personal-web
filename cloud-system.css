@@ -1,0 +1,88 @@
+/*
+ * Removable illustrated-cloud scaffold.
+ * Each path is an independent future animation/artwork target.
+ */
+.cloud-system {
+  position: absolute;
+  inset: 0;
+  z-index: 7;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.cloud {
+  position: absolute;
+  bottom: 0;
+  display: block;
+  overflow: visible;
+}
+
+.cloud-left {
+  left: 0;
+  width: 15vw;
+  height: 32vh;
+  height: 32svh;
+}
+
+.cloud-right {
+  right: 0;
+  width: 20vw;
+  height: 42vh;
+  height: 42svh;
+}
+
+.cloud-left-layer-1,
+.cloud-left-layer-2,
+.cloud-left-layer-3,
+.cloud-right-layer-1,
+.cloud-right-layer-2,
+.cloud-right-layer-3,
+.cloud-right-layer-4 {
+  opacity: 0;
+  vector-effect: non-scaling-stroke;
+}
+
+.cloud-left-layer-1 {
+  fill: rgba(255, 253, 244, 0.68);
+  stroke: rgba(138, 162, 140, 0.24);
+}
+
+.cloud-left-layer-2 {
+  fill: rgba(247, 243, 232, 0.82);
+  stroke: rgba(138, 162, 140, 0.2);
+}
+
+.cloud-left-layer-3 {
+  fill: rgba(255, 253, 244, 0.92);
+  stroke: rgba(138, 162, 140, 0.16);
+}
+
+.cloud-right-layer-1 {
+  fill: rgba(138, 162, 140, 0.3);
+  stroke: rgba(84, 116, 102, 0.25);
+}
+
+.cloud-right-layer-2 {
+  fill: rgba(247, 243, 232, 0.72);
+  stroke: rgba(84, 116, 102, 0.22);
+}
+
+.cloud-right-layer-3 {
+  fill: rgba(138, 162, 140, 0.42);
+  stroke: rgba(84, 116, 102, 0.2);
+}
+
+.cloud-right-layer-4 {
+  fill: rgba(255, 253, 244, 0.9);
+  stroke: rgba(84, 116, 102, 0.16);
+}
+
+.cloud-left-layer-1,
+.cloud-left-layer-2,
+.cloud-left-layer-3,
+.cloud-right-layer-1,
+.cloud-right-layer-2,
+.cloud-right-layer-3,
+.cloud-right-layer-4 {
+  stroke-width: 1;
+}
