@@ -7,11 +7,6 @@
   inset: 0;
   z-index: 7;
   overflow: hidden;
-  background-image: url("assets/forest-veil-layer-3-preview.png");
-  background-position: -38vw calc(100% + 22vh);
-  background-position: -38vw calc(100% + 22svh);
-  background-repeat: no-repeat;
-  background-size: 58vw auto;
   pointer-events: none;
 }
 
@@ -30,7 +25,7 @@
 .cloud-system::before {
   bottom: -10vh;
   bottom: -10svh;
-  z-index: 1;
+  z-index: 2;
   width: 62vw;
   background-image: url("assets/forest-veil-layer-2-preview.png");
   transform: translateX(-43vw);
@@ -39,10 +34,10 @@
 .cloud-system::after {
   bottom: -20vh;
   bottom: -20svh;
-  z-index: 2;
+  z-index: 3;
   width: 68vw;
   background-image: url("assets/forest-veil-layer-1-preview.png");
-  transform: translateX(-51vw);
+  transform: translateX(-47vw);
 }
 
 .cloud {
@@ -53,17 +48,32 @@
 }
 
 .cloud-left {
-  left: 0;
-  width: 15vw;
-  height: 32vh;
-  height: 32svh;
+  bottom: -28vh;
+  bottom: -28svh;
+  left: -25vw;
+  z-index: 1;
+  width: 80vw;
+  height: auto;
+  aspect-ratio: 3 / 2;
+  background: url("assets/base-cloud-layer.png") center / contain no-repeat;
+  filter: brightness(0.9) saturate(0.78) sepia(0.14) hue-rotate(7deg);
 }
 
 .cloud-right {
-  right: 0;
-  width: 20vw;
-  height: 42vh;
-  height: 42svh;
+  right: auto;
+  bottom: -32vh;
+  bottom: -32svh;
+  left: calc(-38vw + 24vh);
+  left: calc(-38vw + 24svh);
+  z-index: 0;
+  width: 58vw;
+  height: auto;
+  aspect-ratio: 3 / 2;
+  background: url("assets/forest-veil-layer-3-preview.png") center / contain no-repeat;
+  filter: brightness(0.95) saturate(1) hue-rotate(4deg) drop-shadow(0 0 0 rgba(122, 105, 154, 0.12));
+  opacity: 0.72;
+  transform: scaleY(1.35);
+  transform-origin: center bottom;
 }
 
 .cloud-left-layer-1,
