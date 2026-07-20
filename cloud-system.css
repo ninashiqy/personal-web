@@ -7,7 +7,42 @@
   inset: 0;
   z-index: 7;
   overflow: hidden;
+  background-image: url("assets/forest-veil-layer-3-preview.png");
+  background-position: -38vw calc(100% + 22vh);
+  background-position: -38vw calc(100% + 22svh);
+  background-repeat: no-repeat;
+  background-size: 58vw auto;
   pointer-events: none;
+}
+
+.cloud-system::before,
+.cloud-system::after {
+  position: absolute;
+  left: 0;
+  display: block;
+  aspect-ratio: 3 / 2;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: contain;
+  content: "";
+}
+
+.cloud-system::before {
+  bottom: -10vh;
+  bottom: -10svh;
+  z-index: 1;
+  width: 62vw;
+  background-image: url("assets/forest-veil-layer-2-preview.png");
+  transform: translateX(-43vw);
+}
+
+.cloud-system::after {
+  bottom: -20vh;
+  bottom: -20svh;
+  z-index: 2;
+  width: 68vw;
+  background-image: url("assets/forest-veil-layer-1-preview.png");
+  transform: translateX(-51vw);
 }
 
 .cloud {
