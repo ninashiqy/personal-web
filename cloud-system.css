@@ -10,6 +10,12 @@
   pointer-events: none;
 }
 
+.cloud-system-copy {
+  z-index: 6;
+  opacity: 0.48;
+  transform: translate3d(20vh, -10vh, 0) scale(1.25) skewX(-12deg);
+}
+
 .cloud-system::before,
 .cloud-system::after {
   position: absolute;
