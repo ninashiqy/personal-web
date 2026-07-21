@@ -10,6 +10,27 @@
   pointer-events: none;
 }
 
+.right-cloud-system {
+  position: absolute;
+  inset: 0;
+  z-index: 7;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.right-cloud-layer {
+  position: absolute;
+  right: calc(-9vw - 65vh);
+  right: calc(-9vw - 65svh);
+  bottom: -37vh;
+  bottom: -37svh;
+  display: block;
+  width: 88vw;
+  height: auto;
+  filter: brightness(1.08) saturate(0.9);
+  opacity: 0.3;
+}
+
 .cloud-system-copy {
   z-index: 6;
   opacity: 0.48;
