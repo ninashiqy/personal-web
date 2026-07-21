@@ -16,6 +16,21 @@
   transform: translate3d(20vh, -10vh, 0) scale(1.25) skewX(-12deg);
 }
 
+.duplicate-right-cloud {
+  position: absolute;
+  right: calc(-34vw + 107vh);
+  right: calc(-34vw + 107svh);
+  bottom: -22vh;
+  bottom: -22svh;
+  z-index: -1;
+  display: block;
+  width: 72vw;
+  height: auto;
+  filter: saturate(0.75);
+  opacity: 0.45;
+  transform: rotate(6deg) skewX(12deg) scale(0.72);
+}
+
 .cloud-system::before,
 .cloud-system::after {
   position: absolute;
