@@ -11,6 +11,7 @@ function initPlanet() {
   const islands = [...document.querySelectorAll(".explore-screen > .island")];
   const islandLinks = [...document.querySelectorAll('.island-nav a[href^="#"]')];
   const signalIsland = document.querySelector("#signal");
+  const signalStoryScroller = document.querySelector(".signal-stories");
   const signalIndexLinks = [...document.querySelectorAll('.signal-index a[href^="#signal-"]')];
   const signalStories = [...document.querySelectorAll(".signal-stories .signal-story")];
   const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
@@ -58,13 +59,13 @@ function initPlanet() {
     link.addEventListener("click", (event) => {
       event.preventDefault();
       const target = document.querySelector(link.getAttribute("href"));
-      if (!target || !signalIsland) return;
-      const targetTop = target.getBoundingClientRect().top - signalIsland.getBoundingClientRect().top + signalIsland.scrollTop;
-      signalIsland.scrollTo({ top: targetTop - Math.max(104, window.innerHeight * 0.15), behavior: prefersReducedMotion.matches ? "auto" : "smooth" });
+      if (!target || !signalStoryScroller) return;
+      const targetTop = target.getBoundingClientRect().top - signalStoryScroller.getBoundingClientRect().top + signalStoryScroller.scrollTop;
+      signalStoryScroller.scrollTo({ top: targetTop - window.innerHeight * 0.05, behavior: prefersReducedMotion.matches ? "auto" : "smooth" });
     });
   });
 
-  signalIsland?.addEventListener("scroll", () => {
+  signalStoryScroller?.addEventListener("scroll", () => {
     const guide = window.innerHeight * 0.3;
     let closest = signalStories[0];
     let closestDistance = Infinity;
