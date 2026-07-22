@@ -8,21 +8,86 @@ function initPlanet() {
   const toast = document.querySelector(".discovery-toast");
   const discoveries = document.querySelectorAll(".easter");
   const birds = [...document.querySelectorAll(".golden-bird")];
+  const islands = [...document.querySelectorAll(".explore-screen > .island")];
+  const islandLinks = [...document.querySelectorAll('.island-nav a[href^="#"]')];
+  const signalIsland = document.querySelector("#signal");
+  const signalIndexLinks = [...document.querySelectorAll('.signal-index a[href^="#signal-"]')];
+  const signalStories = [...document.querySelectorAll(".signal-stories .signal-story")];
   const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
 
-  if (location.hash && document.querySelector(location.hash)) {
+  if (location.hash && document.querySelector(location.hash)?.classList.contains("island")) {
     landingUnlocked = true;
     document.body.classList.add("site-entered");
+    showIsland(location.hash);
   } else {
     document.body.classList.add("landing-locked");
   }
 
   document.addEventListener("click", (event) => {
+    const exitTrigger = event.target.closest('[data-action="exit-site"]');
+    if (exitTrigger) {
+      event.preventDefault();
+      landingUnlocked = false;
+      document.body.classList.add("landing-locked");
+      document.body.classList.remove("site-entered");
+      history.pushState(null, "", location.pathname);
+      return;
+    }
+
     const trigger = event.target.closest('[data-action="enter-site"]');
     if (!trigger) return;
     event.preventDefault();
     enterSite(trigger.getAttribute("href") || "#world-map");
   });
+
+  islandLinks.forEach((link) => {
+    link.addEventListener("click", (event) => {
+      const targetHash = link.getAttribute("href");
+      if (!targetHash || targetHash === "#" || !document.querySelector(targetHash)?.classList.contains("island")) return;
+      event.preventDefault();
+      showIsland(targetHash);
+      history.pushState(null, "", targetHash);
+    });
+  });
+
+  window.addEventListener("popstate", () => {
+    if (location.hash && document.querySelector(location.hash)?.classList.contains("island")) showIsland(location.hash);
+  });
+
+  signalIndexLinks.forEach((link) => {
+    link.addEventListener("click", (event) => {
+      event.preventDefault();
+      const target = document.querySelector(link.getAttribute("href"));
+      if (!target || !signalIsland) return;
+      const targetTop = target.getBoundingClientRect().top - signalIsland.getBoundingClientRect().top + signalIsland.scrollTop;
+      signalIsland.scrollTo({ top: targetTop - Math.max(104, window.innerHeight * 0.15), behavior: prefersReducedMotion.matches ? "auto" : "smooth" });
+    });
+  });
+
+  signalIsland?.addEventListener("scroll", () => {
+    const guide = window.innerHeight * 0.3;
+    let closest = signalStories[0];
+    let closestDistance = Infinity;
+    signalStories.forEach((story) => {
+      const distance = Math.abs(story.getBoundingClientRect().top - guide);
+      if (distance < closestDistance) {
+        closest = story;
+        closestDistance = distance;
+      }
+    });
+    signalIndexLinks.forEach((link) => link.classList.toggle("is-current", link.getAttribute("href") === `#${closest?.id}`));
+  }, { passive: true });
+
+  function showIsland(targetHash) {
+    const islandId = targetHash.replace("#", "");
+    islands.forEach((island) => island.classList.toggle("is-active", island.id === islandId));
+    islandLinks.forEach((link) => {
+      if (link.getAttribute("href") === targetHash) link.setAttribute("aria-current", "page");
+      else link.removeAttribute("aria-current");
+    });
+    const activeIsland = islands.find((island) => island.id === islandId);
+    if (activeIsland) activeIsland.scrollTop = 0;
+  }
 
   window.addEventListener("wheel", lockLandingWheel, { passive: false });
   window.addEventListener("keydown", lockLandingKeys);
@@ -70,9 +135,10 @@ function initPlanet() {
       landingUnlocked = true;
       document.body.classList.remove("landing-locked");
       document.body.classList.add("site-entered");
+      showIsland(targetHash === "#world-map" ? "#signal" : targetHash);
       window.scrollTo({ top: 0, left: 0, behavior: "auto" });
       if (targetHash.startsWith("#")) {
-        history.pushState(null, "", targetHash);
+        history.pushState(null, "", targetHash === "#world-map" ? "#signal" : targetHash);
       }
     }, 1030);
 

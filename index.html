@@ -20,10 +20,10 @@
             <i aria-hidden="true"></i>
           </a>
           <div class="nav-links" aria-label="Site sections">
-            <a href="#about" data-action="enter-site">About</a>
-            <a href="#made" data-action="enter-site">Made Things</a>
-            <a href="#notes" data-action="enter-site">Field Notes</a>
-            <a href="#journeys" data-action="enter-site">Journeys</a>
+            <a href="#signal" data-action="enter-site">Signal <small>Research</small></a>
+            <a href="#commons" data-action="enter-site">Commons <small>Leadership</small></a>
+            <a href="#studio" data-action="enter-site">Studio <small>Art</small></a>
+            <a href="#momentum" data-action="enter-site">Momentum <small>Sport</small></a>
           </div>
         </nav>
 
@@ -125,7 +125,7 @@
             A small green world for curiosity, beauty,<br />
             and things still becoming.
           </p>
-          <a class="explore-button" href="#world-map" aria-label="Explore Nina's Planet" data-action="enter-site">
+          <a class="explore-button" href="#signal" aria-label="Explore Nina's Planet" data-action="enter-site">
             <span>Explore</span>
             <svg viewBox="0 0 24 24" aria-hidden="true">
               <path d="M5 12h13m-5-5 5 5-5 5" />
@@ -140,43 +140,159 @@
       </section>
 
       <section class="explore-screen" id="world-map" aria-label="Explore Nina's world">
-        <div class="explore-inner">
-          <header class="explore-header">
-            <p class="eyebrow">You are now inside</p>
-            <h2>A World In Progress</h2>
-            <p>
-              A quiet map of the things I make, notice, learn, collect, and become.
-            </p>
+        <nav class="island-nav" aria-label="Island navigation">
+          <a class="island-brand" href="#" data-action="exit-site">Nina's Planet</a>
+          <div>
+            <a href="#signal"><span>Signal</span><small>Research</small></a>
+            <a href="#commons"><span>Commons</span><small>Leadership</small></a>
+            <a href="#studio"><span>Studio</span><small>Art</small></a>
+            <a href="#momentum"><span>Momentum</span><small>Sport</small></a>
+          </div>
+        </nav>
+
+        <header class="atlas-intro">
+          <p class="section-index">Field guide · four islands</p>
+          <h2>Things I have followed<br />far enough to change me.</h2>
+          <p class="atlas-note">This is less a catalogue of achievements than a map of attention: the questions I kept asking, the rooms I learned to help shape, and the things that made me lose track of time.</p>
+          <div class="map-key" aria-label="Map key">
+            <a href="#signal">I investigate</a>
+            <a href="#commons">I contribute</a>
+            <a href="#studio">I express</a>
+            <a href="#momentum">I move</a>
+          </div>
+        </header>
+
+        <section class="island island-signal" id="signal" aria-labelledby="signal-title">
+          <div class="signal-haze" aria-hidden="true"></div>
+          <header class="signal-intro">
+            <p class="signal-coordinate">Island 01 · Observatory district</p>
+            <h2 id="signal-title">Signal</h2>
+            <p class="signal-subtitle">Research · Data · Finance</p>
+            <blockquote>I like the moment when a pile of information<br />begins to behave like a pattern.</blockquote>
           </header>
 
-          <div class="map-grid">
-            <a class="place place-large" id="about" href="#about">
-              <span class="place-kicker">01</span>
-              <h3>About</h3>
-              <p>Values, story, and the kind of person I am growing into.</p>
-            </a>
-            <a class="place" id="made" href="#made">
-              <span class="place-kicker">02</span>
-              <h3>Made Things</h3>
-              <p>Projects, experiments, designs, and ideas made tangible.</p>
-            </a>
-            <a class="place" id="journeys" href="#journeys">
-              <span class="place-kicker">03</span>
-              <h3>Journeys</h3>
-              <p>Travel, photography, places, color, light, and memory.</p>
-            </a>
-            <a class="place" id="notes" href="#notes">
-              <span class="place-kicker">04</span>
-              <h3>Field Notes</h3>
-              <p>Thoughts on learning, living, creating, and paying attention.</p>
-            </a>
-            <a class="place" id="collected" href="#collected">
-              <span class="place-kicker">05</span>
-              <h3>Collected Light</h3>
-              <p>Little discoveries, references, quotes, and beautiful fragments.</p>
-            </a>
+          <div class="signal-trail">
+            <aside class="signal-index" aria-label="Signal experience index">
+              <p>Research log</p>
+              <a class="is-current" href="#signal-hft"><span>01</span><strong>AI supply chain</strong><small>Jun–Jul 2026</small></a>
+              <a href="#signal-finance"><span>02</span><strong>Financial Modeling Club</strong><small>Jan 2026–present</small></a>
+              <a href="#signal-tech"><span>03</span><strong>Technology &amp; trust</strong><small>Jun–Aug 2025</small></a>
+              <a href="#signal-titanic"><span>04</span><strong>Predictive models</strong><small>Jun–Jul 2024</small></a>
+            </aside>
+
+            <div class="signal-stories">
+              <article class="signal-story" id="signal-hft">
+                <div class="signal-story-number">01 <span>Newest signal</span></div>
+                <div class="signal-story-meta"><span>HFT Investment Management · Research Intern</span><time>Shanghai · June–July 2026</time></div>
+                <h3>Following copper through the AI boom</h3>
+                <p>I spent the summer tracing a quiet but essential link in the AI supply chain: the copper-clad laminates inside printed circuit boards. Reading supplier updates and capacity plans made me wonder how downstream excitement travels backward through an industry—changing not only how much material is needed, but what kind. AI tools helped sort the evidence; deciding what the evidence meant remained the interesting part.</p>
+                <p class="signal-afterthought">What stayed with me: demand is rarely a single arrow. It travels through layers of materials, decisions, and expectations before it becomes visible.</p>
+              </article>
+              <article class="signal-story" id="signal-finance">
+                <div class="signal-story-number">02</div>
+                <div class="signal-story-meta"><span>Financial Modeling Club · Analyst</span><time>Nashville · January 2026–present</time></div>
+                <h3>Learning to see the business behind the cells</h3>
+                <p>I joined to learn the mechanics of three-statement models, public comps, DCFs, and LBOs. Somewhere between the shortcuts and valuation cases, spreadsheets stopped looking like grids and started looking like arguments: compact versions of what someone believes a business is, and what it might become.</p>
+                <p class="signal-afterthought">A model is precise, but never neutral. Every assumption quietly reveals what its builder thinks matters.</p>
+              </article>
+              <article class="signal-story" id="signal-tech">
+                <div class="signal-story-number">03</div>
+                <div class="signal-story-meta"><span>Tech&amp;R · Technology Intern</span><time>Beijing · June–August 2025</time></div>
+                <h3>Technology, trust, and the space between them</h3>
+                <p>One project led me through consumer-data regulation and the risks of big-data discrimination; another introduced me to the logic of cryptography. Together, they shifted the question I was asking. Instead of only wondering what technology can do, I became more interested in what must be true—legally, technically, and socially—for people to trust it.</p>
+                <p class="signal-afterthought">Security can be engineered. Trust has to be earned from several directions at once.</p>
+              </article>
+              <article class="signal-story" id="signal-titanic">
+                <div class="signal-story-number">04 <span>First transmission</span></div>
+                <div class="signal-story-meta"><span>Titanic Survival Analysis · Predictive Modeling &amp; Analysis Intern</span><time>Shanghai · June–July 2024</time></div>
+                <h3>When a familiar story became a data question</h3>
+                <p>I began with a familiar question—who survived the Titanic?—and followed it into the demographic and socioeconomic patterns beneath the answer. I built logistic regression and random forest models in R, eventually reaching 91% accuracy. The more interesting lesson was not that a model could predict an outcome, but that every clean variable represented a person living through a very unclean reality.</p>
+                <p class="signal-afterthought">Accuracy was satisfying. Remembering what the rows represented was more important.</p>
+              </article>
+              <p class="signal-endnote">End of the current log · more signals are still arriving.</p>
+            </div>
           </div>
-        </div>
+        </section>
+
+        <section class="island island-commons" id="commons" aria-labelledby="commons-title">
+          <div class="island-landscape commons-landscape" aria-hidden="true"><i></i><i></i><i></i><span></span></div>
+          <header class="island-heading">
+            <p class="section-index">Island 02 · I contribute</p>
+            <h2 id="commons-title">Commons</h2>
+            <p>Leadership &amp; community</p>
+            <blockquote>The kind of leadership I value usually looks less like being in front and more like noticing what a group needs next.</blockquote>
+          </header>
+          <div class="story-list">
+            <article class="story">
+              <div class="story-meta"><span>Student Council · President</span><time>2023—2025</time></div>
+              <h3>Turning everyday complaints into shared proposals</h3>
+              <p>Student council placed me somewhere between strategist, event producer, and collector of very specific complaints. I helped plan school-wide events for hundreds of people, but the work I remember most began with ordinary frustrations—unreliable Wi-Fi, too little study space, too few ways to get involved. Representing students taught me to translate between what people feel and what an institution can act on.</p>
+              <ul class="story-tags"><li>Advocacy</li><li>Community events</li><li>Zhuhai</li></ul>
+            </article>
+            <article class="story">
+              <div class="story-meta"><span>Association for Women in Mathematics</span><time>2026—now</time></div>
+              <h3>Mathematics as a shared language</h3>
+              <p>At Vanderbilt, I found a community where solving problems and asking who gets to feel at home in mathematics belong in the same conversation. Our meetings have made math feel less like an individual performance and more like a shared language—one that becomes richer when more people can speak without first proving they belong.</p>
+              <ul class="story-tags"><li>Mathematics</li><li>Belonging</li><li>Nashville</li></ul>
+            </article>
+          </div>
+          <aside class="crossing-note"><span>A path continues east</span><p>Some of my leadership happens in motion. Captaincy and team culture live on Momentum, where the full sports stories belong.</p><a href="#momentum">Follow the path →</a></aside>
+        </section>
+
+        <section class="island island-studio" id="studio" aria-labelledby="studio-title">
+          <div class="island-landscape studio-landscape" aria-hidden="true"><span class="frame frame-one"></span><span class="frame frame-two"></span><i class="spotlight"></i></div>
+          <header class="island-heading">
+            <p class="section-index">Island 03 · I express</p>
+            <h2 id="studio-title">Studio</h2>
+            <p>Art, performance &amp; expression</p>
+            <blockquote>Some thoughts arrive as sentences. Others insist on becoming a line, a color, or a person onstage.</blockquote>
+          </header>
+          <div class="gallery-preview" aria-label="Future art exhibition">
+            <div class="art-frame art-frame-large"><span>Your drawing<br />will live here</span></div>
+            <div class="art-frame"><span>Gallery<br />work II</span></div>
+            <div class="art-frame"><span>Sketchbook<br />detail</span></div>
+            <p>A room is being kept for the drawings I am proud of. Finished works will sit beside small notes about the choices, accidents, and stubborn details that shaped them.</p>
+          </div>
+          <div class="story-list story-list-single">
+            <article class="story">
+              <div class="story-meta"><span>Performing Arts · Lead Coordinator &amp; Performer</span><time>2023—2025</time></div>
+              <h3>Learning what makes spontaneity possible</h3>
+              <p>My time in performing arts moved between playing the principal lead in <em>Shrek the Musical</em> and hosting galas, festivals, and formal ceremonies. Working with a production team of more than forty people taught me that what looks effortless onstage is usually held up by rehearsal, trust, and a surprising amount of emergency improvisation backstage.</p>
+              <ul class="story-tags"><li>Theatre</li><li>Hosting</li><li>Zhuhai</li></ul>
+            </article>
+          </div>
+        </section>
+
+        <section class="island island-momentum" id="momentum" aria-labelledby="momentum-title">
+          <div class="island-landscape momentum-landscape" aria-hidden="true"><span class="court-line"></span><i class="ball ball-one"></i><i class="ball ball-two"></i><i class="ball ball-three"></i></div>
+          <header class="island-heading">
+            <p class="section-index">Island 04 · I move</p>
+            <h2 id="momentum-title">Momentum</h2>
+            <p>Sport, strategy &amp; teamwork</p>
+            <blockquote>I return to sport for the split second when thought becomes movement—and for the people moving beside me.</blockquote>
+          </header>
+          <div class="favorite-sports" aria-label="Favorite sports">
+            <p class="section-index">The games I return to</p>
+            <div><span>Volleyball</span><span>Tennis</span><span>Basketball</span><span>Ultimate</span><span>Badminton</span></div>
+          </div>
+          <div class="story-list">
+            <article class="story">
+              <div class="story-meta"><span>Varsity Basketball · Captain</span><time>2023—2025</time></div>
+              <h3>Reading the game while living inside it</h3>
+              <p>I captained our team through a rebuilding season that ended with a second-place regional finish. What stayed with me was learning to notice: where an opponent was becoming comfortable, when our energy was slipping, and what a teammate needed before the next possession. Leadership rarely arrived as one dramatic speech. Usually, it was a small adjustment made in time.</p>
+              <ul class="story-tags"><li>Leadership</li><li>Strategy</li><li>Zhuhai</li></ul>
+            </article>
+            <article class="story">
+              <div class="story-meta"><span>Ultimate Frisbee · Spirit Chair</span><time>2025—now</time></div>
+              <h3>Competing without outsourcing sportsmanship</h3>
+              <p>Ultimate introduced me to a sport where players are responsible for both competition and fair play. As Spirit Chair, I help lead drills, welcome newer players, and look after the culture around the team. It has made me think about spirit not as extra enthusiasm, but as part of how a group chooses to compete.</p>
+              <ul class="story-tags"><li>Team culture</li><li>Community</li><li>Nashville</li></ul>
+            </article>
+          </div>
+          <div class="photo-trail"><span>Future field notes</span><p>Match photographs, quiet practice moments, and stories from volleyball, tennis, and badminton can grow along this trail as I find them.</p></div>
+        </section>
+
+        <footer class="planet-footer"><p>Still mapping. Still becoming.</p><a href="#world-map">Return to the map ↑</a></footer>
       </section>
 
       <p class="discovery-toast" role="status"></p>
