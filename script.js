@@ -14,7 +14,18 @@ function initPlanet() {
   const signalStoryScroller = document.querySelector(".signal-stories");
   const signalIndexLinks = [...document.querySelectorAll('.signal-index a[href^="#signal-"]')];
   const signalStories = [...document.querySelectorAll(".signal-stories .signal-story")];
+  const commonsStoryScroller = document.querySelector(".commons-stories");
+  const commonsIndexLinks = [...document.querySelectorAll('.commons-index a[href^="#commons-"]')];
+  const commonsStories = [...document.querySelectorAll(".commons-stories .commons-story")];
+  const studioStoryScroller = document.querySelector(".studio-stories");
+  const studioIndexLinks = [...document.querySelectorAll('.studio-index a[href^="#studio-"]')];
+  const studioStories = [...document.querySelectorAll(".studio-stories .studio-story")];
+  const momentumStoryScroller = document.querySelector(".momentum-stories");
+  const momentumIndexLinks = [...document.querySelectorAll('.momentum-index a[href^="#momentum-"]')];
+  const momentumStories = [...document.querySelectorAll(".momentum-stories .momentum-story")];
   const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
+
+  initSeasonNotes();
 
   if (location.hash && document.querySelector(location.hash)?.classList.contains("island")) {
     landingUnlocked = true;
@@ -31,6 +42,8 @@ function initPlanet() {
       landingUnlocked = false;
       document.body.classList.add("landing-locked");
       document.body.classList.remove("site-entered");
+      islands.forEach((island) => island.classList.remove("is-active"));
+      islandLinks.forEach((link) => link.removeAttribute("aria-current"));
       history.pushState(null, "", location.pathname);
       return;
     }
@@ -79,6 +92,78 @@ function initPlanet() {
     signalIndexLinks.forEach((link) => link.classList.toggle("is-current", link.getAttribute("href") === `#${closest?.id}`));
   }, { passive: true });
 
+  commonsIndexLinks.forEach((link) => {
+    link.addEventListener("click", (event) => {
+      event.preventDefault();
+      const target = document.querySelector(link.getAttribute("href"));
+      if (!target || !commonsStoryScroller) return;
+      const targetTop = target.getBoundingClientRect().top - commonsStoryScroller.getBoundingClientRect().top + commonsStoryScroller.scrollTop;
+      commonsStoryScroller.scrollTo({ top: targetTop - window.innerHeight * 0.05, behavior: prefersReducedMotion.matches ? "auto" : "smooth" });
+    });
+  });
+
+  commonsStoryScroller?.addEventListener("scroll", () => {
+    const guide = window.innerHeight * 0.3;
+    let closest = commonsStories[0];
+    let closestDistance = Infinity;
+    commonsStories.forEach((story) => {
+      const distance = Math.abs(story.getBoundingClientRect().top - guide);
+      if (distance < closestDistance) {
+        closest = story;
+        closestDistance = distance;
+      }
+    });
+    commonsIndexLinks.forEach((link) => link.classList.toggle("is-current", link.getAttribute("href") === `#${closest?.id}`));
+  }, { passive: true });
+
+  studioIndexLinks.forEach((link) => {
+    link.addEventListener("click", (event) => {
+      event.preventDefault();
+      const target = document.querySelector(link.getAttribute("href"));
+      if (!target || !studioStoryScroller) return;
+      const targetTop = target.getBoundingClientRect().top - studioStoryScroller.getBoundingClientRect().top + studioStoryScroller.scrollTop;
+      studioStoryScroller.scrollTo({ top: targetTop - window.innerHeight * 0.05, behavior: prefersReducedMotion.matches ? "auto" : "smooth" });
+    });
+  });
+
+  studioStoryScroller?.addEventListener("scroll", () => {
+    const guide = window.innerHeight * 0.3;
+    let closest = studioStories[0];
+    let closestDistance = Infinity;
+    studioStories.forEach((story) => {
+      const distance = Math.abs(story.getBoundingClientRect().top - guide);
+      if (distance < closestDistance) {
+        closest = story;
+        closestDistance = distance;
+      }
+    });
+    studioIndexLinks.forEach((link) => link.classList.toggle("is-current", link.getAttribute("href") === `#${closest?.id}`));
+  }, { passive: true });
+
+  momentumIndexLinks.forEach((link) => {
+    link.addEventListener("click", (event) => {
+      event.preventDefault();
+      const target = document.querySelector(link.getAttribute("href"));
+      if (!target || !momentumStoryScroller) return;
+      const targetTop = target.getBoundingClientRect().top - momentumStoryScroller.getBoundingClientRect().top + momentumStoryScroller.scrollTop;
+      momentumStoryScroller.scrollTo({ top: targetTop - window.innerHeight * 0.05, behavior: prefersReducedMotion.matches ? "auto" : "smooth" });
+    });
+  });
+
+  momentumStoryScroller?.addEventListener("scroll", () => {
+    const guide = window.innerHeight * 0.3;
+    let closest = momentumStories[0];
+    let closestDistance = Infinity;
+    momentumStories.forEach((story) => {
+      const distance = Math.abs(story.getBoundingClientRect().top - guide);
+      if (distance < closestDistance) {
+        closest = story;
+        closestDistance = distance;
+      }
+    });
+    momentumIndexLinks.forEach((link) => link.classList.toggle("is-current", link.getAttribute("href") === `#${closest?.id}`));
+  }, { passive: true });
+
   function showIsland(targetHash) {
     const islandId = targetHash.replace("#", "");
     islands.forEach((island) => island.classList.toggle("is-active", island.id === islandId));
@@ -116,8 +201,10 @@ function initPlanet() {
   function enterSite(targetHash) {
     if (transitionInProgress) return;
 
+    const destinationHash = targetHash === "#world-map" ? "#signal" : targetHash;
     transitionInProgress = true;
     birdsPaused = true;
+    showIsland(destinationHash);
     document.body.classList.add("is-transitioning", "button-pressed");
 
     window.setTimeout(() => {
@@ -136,10 +223,9 @@ function initPlanet() {
       landingUnlocked = true;
       document.body.classList.remove("landing-locked");
       document.body.classList.add("site-entered");
-      showIsland(targetHash === "#world-map" ? "#signal" : targetHash);
       window.scrollTo({ top: 0, left: 0, behavior: "auto" });
       if (targetHash.startsWith("#")) {
-        history.pushState(null, "", targetHash === "#world-map" ? "#signal" : targetHash);
+        history.pushState(null, "", destinationHash);
       }
     }, 1030);
 
@@ -173,6 +259,92 @@ function initPlanet() {
       }
     }
   }
+}
+
+function initSeasonNotes() {
+  const seasonalLinks = [...document.querySelectorAll("[data-season]")];
+  if (!seasonalLinks.length) return;
+
+  const seasons = {
+    signal: {
+      label: "Spring · Signal",
+      subtitle: "Research",
+      description: "The season of beginnings. Where curiosity grows into questions, and questions turn into discoveries.",
+    },
+    commons: {
+      label: "Summer · Commons",
+      subtitle: "Leadership",
+      description: "The season of connection. Where people come together, ideas grow, and communities take shape.",
+    },
+    studio: {
+      label: "Autumn · Studio",
+      subtitle: "Art",
+      description: "The season of expression. Where observations become stories, and ideas find their own forms.",
+    },
+    momentum: {
+      label: "Winter · Momentum",
+      subtitle: "Sports",
+      description: "The season of resilience. Where challenges are embraced, and strength is built through persistence.",
+    },
+  };
+
+  const note = document.createElement("aside");
+  note.className = "season-note";
+  note.setAttribute("aria-hidden", "true");
+  note.innerHTML = '<p class="season-note-label"></p><p class="season-note-subtitle"></p><p class="season-note-description"></p>';
+  document.body.append(note);
+
+  const label = note.querySelector(".season-note-label");
+  const subtitle = note.querySelector(".season-note-subtitle");
+  const description = note.querySelector(".season-note-description");
+  let activeLink = null;
+  let hideTimer;
+
+  function showNote(link) {
+    const seasonName = link.dataset.season;
+    const season = seasons[seasonName];
+    if (!season) return;
+
+    window.clearTimeout(hideTimer);
+    activeLink = link;
+    note.dataset.season = seasonName;
+    label.textContent = season.label;
+    subtitle.textContent = season.subtitle;
+    description.textContent = season.description;
+    positionNote(link);
+    note.classList.add("is-visible");
+  }
+
+  function scheduleHide(link) {
+    window.clearTimeout(hideTimer);
+    hideTimer = window.setTimeout(() => {
+      if (activeLink !== link) return;
+      activeLink = null;
+      note.classList.remove("is-visible");
+    }, 90);
+  }
+
+  function positionNote(link) {
+    const rect = link.getBoundingClientRect();
+    const halfWidth = Math.min(148, (window.innerWidth - 32) / 2);
+    const center = Math.max(halfWidth + 16, Math.min(window.innerWidth - halfWidth - 16, rect.left + rect.width / 2));
+    note.style.setProperty("--season-note-left", `${center}px`);
+    note.style.setProperty("--season-note-top", `${rect.bottom + 12}px`);
+  }
+
+  seasonalLinks.forEach((link) => {
+    link.addEventListener("pointerenter", (event) => {
+      if (event.pointerType === "touch") return;
+      showNote(link);
+    });
+    link.addEventListener("pointerleave", () => scheduleHide(link));
+    link.addEventListener("focus", () => showNote(link));
+    link.addEventListener("blur", () => scheduleHide(link));
+  });
+
+  window.addEventListener("resize", () => {
+    if (activeLink) positionNote(activeLink);
+  }, { passive: true });
 }
 
 function startBirdLife(birds) {

@@ -20,10 +20,10 @@
             <i aria-hidden="true"></i>
           </a>
           <div class="nav-links" aria-label="Site sections">
-            <a href="#signal" data-action="enter-site">Signal <small>Research</small></a>
-            <a href="#commons" data-action="enter-site">Commons <small>Leadership</small></a>
-            <a href="#studio" data-action="enter-site">Studio <small>Art</small></a>
-            <a href="#momentum" data-action="enter-site">Momentum <small>Sport</small></a>
+            <a href="#signal" data-action="enter-site" data-season="signal">Signal <small>Research</small></a>
+            <a href="#commons" data-action="enter-site" data-season="commons">Commons <small>Leadership</small></a>
+            <a href="#studio" data-action="enter-site" data-season="studio">Studio <small>Art</small></a>
+            <a href="#momentum" data-action="enter-site" data-season="momentum">Momentum <small>Sport</small></a>
           </div>
         </nav>
 
@@ -125,7 +125,7 @@
             A small green world for curiosity, beauty,<br />
             and things still becoming.
           </p>
-          <a class="explore-button" href="#signal" aria-label="Explore Nina's Planet" data-action="enter-site">
+          <a class="explore-button" href="#origin" aria-label="Explore Nina's Planet" data-action="enter-site">
             <span>Explore</span>
             <svg viewBox="0 0 24 24" aria-hidden="true">
               <path d="M5 12h13m-5-5 5 5-5 5" />
@@ -143,10 +143,10 @@
         <nav class="island-nav" aria-label="Island navigation">
           <a class="island-brand" href="#" data-action="exit-site">Nina's Planet</a>
           <div>
-            <a href="#signal"><span>Signal</span><small>Research</small></a>
-            <a href="#commons"><span>Commons</span><small>Leadership</small></a>
-            <a href="#studio"><span>Studio</span><small>Art</small></a>
-            <a href="#momentum"><span>Momentum</span><small>Sport</small></a>
+            <a href="#signal" data-season="signal"><span>Signal</span><small>Research</small></a>
+            <a href="#commons" data-season="commons"><span>Commons</span><small>Leadership</small></a>
+            <a href="#studio" data-season="studio"><span>Studio</span><small>Art</small></a>
+            <a href="#momentum" data-season="momentum"><span>Momentum</span><small>Sport</small></a>
           </div>
         </nav>
 
@@ -161,6 +161,43 @@
             <a href="#momentum">I move</a>
           </div>
         </header>
+
+        <section class="island island-origin" id="origin" aria-labelledby="origin-title">
+          <article class="origin-journal">
+            <h2 class="origin-kicker" id="origin-title">Origin · The Explorer</h2>
+            <p class="origin-greeting">Hi, I’m Nina.</p>
+
+            <div class="origin-entry">
+              <p>Vanderbilt University<br />Mathematics · Class of 2029</p>
+              <p>This site, Nina's Planet, is my scrapbook of small obsessions — internships I've figured out along the way, leadership moments I've stepped into, performances I couldn't resist, and pages and pages of not knowing what comes next. But that's the beauty of it, isn't it?</p>
+            </div>
+
+            <p class="origin-signoff">Thanks for stopping by!</p>
+            <img class="origin-flourish" src="assets/origin-signature.png" alt="Nina’s signature" />
+
+            <aside class="origin-coordinates" aria-label="Coordinates">
+              <p>Coordinates</p>
+              <div>
+                <a href="mailto:ninashi0723@gmail.com">
+                  <span>Email</span>
+                  <small>ninashi0723@gmail.com</small>
+                </a>
+                <a href="http://linkedin.com/in/nina-shi-9047b738a" target="_blank" rel="noreferrer">
+                  <span>LinkedIn</span>
+                  <small>nina-shi-9047b738a</small>
+                </a>
+                <a href="https://www.instagram.com/niiiiiiiniishiii" target="_blank" rel="noreferrer">
+                  <span>Instagram</span>
+                  <small>@niiiiiiiniishiii</small>
+                </a>
+                <a href="tel:+16158875536">
+                  <span>Phone</span>
+                  <small>+1 (615) 887-5536</small>
+                </a>
+              </div>
+            </aside>
+          </article>
+        </section>
 
         <section class="island island-signal" id="signal" aria-labelledby="signal-title">
           <div class="signal-haze" aria-hidden="true"></div>
@@ -214,81 +251,140 @@
         </section>
 
         <section class="island island-commons" id="commons" aria-labelledby="commons-title">
-          <div class="island-landscape commons-landscape" aria-hidden="true"><i></i><i></i><i></i><span></span></div>
-          <header class="island-heading">
-            <p class="section-index">Island 02 · I contribute</p>
+          <header class="commons-intro">
+            <p class="commons-coordinate">Island 02 · The gathering paths</p>
             <h2 id="commons-title">Commons</h2>
-            <p>Leadership &amp; community</p>
             <blockquote>The kind of leadership I value usually looks less like being in front and more like noticing what a group needs next.</blockquote>
           </header>
-          <div class="story-list">
-            <article class="story">
-              <div class="story-meta"><span>Student Council · President</span><time>2023—2025</time></div>
-              <h3>Turning everyday complaints into shared proposals</h3>
-              <p>Student council placed me somewhere between strategist, event producer, and collector of very specific complaints. I helped plan school-wide events for hundreds of people, but the work I remember most began with ordinary frustrations—unreliable Wi-Fi, too little study space, too few ways to get involved. Representing students taught me to translate between what people feel and what an institution can act on.</p>
-              <ul class="story-tags"><li>Advocacy</li><li>Community events</li><li>Zhuhai</li></ul>
-            </article>
-            <article class="story">
-              <div class="story-meta"><span>Association for Women in Mathematics</span><time>2026—now</time></div>
-              <h3>Mathematics as a shared language</h3>
-              <p>At Vanderbilt, I found a community where solving problems and asking who gets to feel at home in mathematics belong in the same conversation. Our meetings have made math feel less like an individual performance and more like a shared language—one that becomes richer when more people can speak without first proving they belong.</p>
-              <ul class="story-tags"><li>Mathematics</li><li>Belonging</li><li>Nashville</li></ul>
-            </article>
+
+          <div class="commons-trail">
+            <aside class="commons-index" aria-label="Commons experience index">
+              <p>Gathering map</p>
+              <a class="is-current" href="#commons-math"><span>01</span><strong>Women in Mathematics</strong><small>Jan 2026–present</small></a>
+              <a href="#commons-council"><span>02</span><strong>Student Council</strong><small>Jan 2023–Jan 2025</small></a>
+            </aside>
+
+            <div class="commons-stories">
+              <article class="commons-story" id="commons-math">
+                <div class="commons-story-number">01 <span>Current gathering</span></div>
+                <div class="commons-story-meta"><span>Association for Women in Mathematics · Member</span><time>Nashville · January 2026–present</time></div>
+                <h3>Mathematics as a shared language</h3>
+                <p>At Vanderbilt, I found a community where solving problems and asking who gets to feel at home in mathematics belong in the same conversation. Our meetings have made math feel less like an individual performance and more like a shared language—one that becomes richer when more people can speak without first proving they belong.</p>
+                <p class="commons-afterthought">A community does more than gather people around the same subject. At its best, it changes who feels invited to speak.</p>
+              </article>
+
+              <article class="commons-story" id="commons-council">
+                <div class="commons-story-number">02 <span>Two years of listening</span></div>
+                <div class="commons-story-meta"><span>Student Council · President</span><time>Zhuhai · January 2023–January 2025</time></div>
+                <h3>Turning everyday complaints into shared proposals</h3>
+                <p>Student council placed me somewhere between strategist, event producer, and collector of very specific complaints. I helped plan school-wide events for hundreds of people, but the work I remember most began with ordinary frustrations—unreliable Wi-Fi, too little study space, too few ways to get involved. Representing students taught me to translate between what people feel and what an institution can act on.</p>
+                <p class="commons-afterthought">Leadership often began with listening closely enough to discover that a small complaint was pointing toward a shared need.</p>
+              </article>
+
+              <p class="commons-endnote">The path stays open · communities keep changing shape.</p>
+            </div>
           </div>
-          <aside class="crossing-note"><span>A path continues east</span><p>Some of my leadership happens in motion. Captaincy and team culture live on Momentum, where the full sports stories belong.</p><a href="#momentum">Follow the path →</a></aside>
         </section>
 
         <section class="island island-studio" id="studio" aria-labelledby="studio-title">
-          <div class="island-landscape studio-landscape" aria-hidden="true"><span class="frame frame-one"></span><span class="frame frame-two"></span><i class="spotlight"></i></div>
-          <header class="island-heading">
-            <p class="section-index">Island 03 · I express</p>
+          <header class="studio-intro">
+            <p class="studio-coordinate">Island 03 · The open studio</p>
             <h2 id="studio-title">Studio</h2>
-            <p>Art, performance &amp; expression</p>
             <blockquote>Some thoughts arrive as sentences. Others insist on becoming a line, a color, or a person onstage.</blockquote>
           </header>
-          <div class="gallery-preview" aria-label="Future art exhibition">
-            <div class="art-frame art-frame-large"><span>Your drawing<br />will live here</span></div>
-            <div class="art-frame"><span>Gallery<br />work II</span></div>
-            <div class="art-frame"><span>Sketchbook<br />detail</span></div>
-            <p>A room is being kept for the drawings I am proud of. Finished works will sit beside small notes about the choices, accidents, and stubborn details that shaped them.</p>
-          </div>
-          <div class="story-list story-list-single">
-            <article class="story">
-              <div class="story-meta"><span>Performing Arts · Lead Coordinator &amp; Performer</span><time>2023—2025</time></div>
-              <h3>Learning what makes spontaneity possible</h3>
-              <p>My time in performing arts moved between playing the principal lead in <em>Shrek the Musical</em> and hosting galas, festivals, and formal ceremonies. Working with a production team of more than forty people taught me that what looks effortless onstage is usually held up by rehearsal, trust, and a surprising amount of emergency improvisation backstage.</p>
-              <ul class="story-tags"><li>Theatre</li><li>Hosting</li><li>Zhuhai</li></ul>
-            </article>
+
+          <div class="studio-trail">
+            <aside class="studio-index" aria-label="Studio collection index">
+              <p>Studio guide</p>
+              <a class="is-current" href="#studio-gallery">
+                <span>01</span>
+                <strong>Drawing room</strong>
+                <small>Collection in progress</small>
+              </a>
+              <a href="#studio-stage">
+                <span>02</span>
+                <strong>Stage &amp; performance</strong>
+                <small>2023–2025</small>
+              </a>
+            </aside>
+
+            <div class="studio-stories">
+              <article class="studio-story" id="studio-gallery">
+                <div class="studio-story-number">01 <span>An exhibition taking shape</span></div>
+                <div class="studio-story-meta"><span>Personal drawings · Selected work</span><time>Collection in progress</time></div>
+                <h3>A room for the things I notice slowly</h3>
+                <p>I am keeping this room for drawings I am proud of—not only the polished ones, but the pieces that taught me how differently a hand can understand something from an eye. Each work will arrive with a small note about the choice, accident, or stubborn detail that gave it a life of its own.</p>
+                <p class="studio-afterthought">The walls are ready. The art will move in as I photograph and prepare each piece.</p>
+              </article>
+
+              <article class="studio-story" id="studio-stage">
+                <div class="studio-story-number">02 <span>Behind the curtain</span></div>
+                <div class="studio-story-meta"><span>Performing Arts · Lead Coordinator &amp; Performer</span><time>Zhuhai · 2023–2025</time></div>
+                <h3>Learning what makes spontaneity possible</h3>
+                <p>My time in performing arts moved between playing the principal lead in <em>Shrek the Musical</em> and hosting galas, festivals, and formal ceremonies. Working with a production team of more than forty people taught me that what looks effortless onstage is usually held up by rehearsal, trust, and a surprising amount of emergency improvisation backstage.</p>
+                <p class="studio-afterthought">The stage made me less afraid of being seen—and much more attentive to everyone making the moment possible from the wings.</p>
+              </article>
+
+              <p class="studio-endnote">The studio stays unfinished on purpose · there is always room for another way of seeing.</p>
+            </div>
           </div>
         </section>
 
         <section class="island island-momentum" id="momentum" aria-labelledby="momentum-title">
-          <div class="island-landscape momentum-landscape" aria-hidden="true"><span class="court-line"></span><i class="ball ball-one"></i><i class="ball ball-two"></i><i class="ball ball-three"></i></div>
-          <header class="island-heading">
-            <p class="section-index">Island 04 · I move</p>
+          <header class="momentum-intro">
+            <p class="momentum-coordinate">Island 04 · The winter courts</p>
             <h2 id="momentum-title">Momentum</h2>
-            <p>Sport, strategy &amp; teamwork</p>
             <blockquote>I return to sport for the split second when thought becomes movement—and for the people moving beside me.</blockquote>
           </header>
-          <div class="favorite-sports" aria-label="Favorite sports">
-            <p class="section-index">The games I return to</p>
-            <div><span>Volleyball</span><span>Tennis</span><span>Basketball</span><span>Ultimate</span><span>Badminton</span></div>
+
+          <div class="momentum-trail">
+            <aside class="momentum-index" aria-label="Momentum experience index">
+              <p>Field notes</p>
+              <a class="is-current" href="#momentum-favorites">
+                <span>01</span>
+                <strong>The games I return to</strong>
+                <small>Always in rotation</small>
+              </a>
+              <a href="#momentum-ultimate">
+                <span>02</span>
+                <strong>Ultimate Frisbee</strong>
+                <small>2025–present</small>
+              </a>
+              <a href="#momentum-basketball">
+                <span>03</span>
+                <strong>Basketball</strong>
+                <small>2023–2025</small>
+              </a>
+            </aside>
+
+            <div class="momentum-stories">
+              <article class="momentum-story" id="momentum-favorites">
+                <div class="momentum-story-number">01 <span>Current rotation</span></div>
+                <div class="momentum-story-meta"><span>Volleyball · Tennis · Badminton</span><time>Still playing</time></div>
+                <h3>The games I return to for different reasons</h3>
+                <p>Volleyball gives me the pleasure of building a point with other people; tennis makes every decision feel unmistakably mine. Badminton lives somewhere between them—quick, precise, and much less forgiving than the shuttlecock looks. I return to each game for a different kind of attention, but all three pull me fully into the present.</p>
+                <p class="momentum-afterthought">Future photographs can join this field note without changing the path around it.</p>
+              </article>
+
+              <article class="momentum-story" id="momentum-ultimate">
+                <div class="momentum-story-number">02 <span>Spirit of the game</span></div>
+                <div class="momentum-story-meta"><span>Ultimate Frisbee · Spirit Chair</span><time>Nashville · 2025–present</time></div>
+                <h3>Competing without outsourcing sportsmanship</h3>
+                <p>Ultimate introduced me to a sport where players are responsible for both competition and fair play. As Spirit Chair, I help lead drills, welcome newer players, and look after the culture around the team. It has made me think about spirit not as extra enthusiasm, but as part of how a group chooses to compete.</p>
+                <p class="momentum-afterthought">A team’s character becomes clearest when everyone wants the point and still remembers the person across the line.</p>
+              </article>
+
+              <article class="momentum-story" id="momentum-basketball">
+                <div class="momentum-story-number">03 <span>Reading the court</span></div>
+                <div class="momentum-story-meta"><span>Varsity Basketball · Captain</span><time>Zhuhai · 2023–2025</time></div>
+                <h3>Reading the game while living inside it</h3>
+                <p>I captained our team through a rebuilding season that ended with a second-place regional finish. What stayed with me was learning to notice: where an opponent was becoming comfortable, when our energy was slipping, and what a teammate needed before the next possession. Leadership rarely arrived as one dramatic speech. Usually, it was a small adjustment made in time.</p>
+                <p class="momentum-afterthought">The best decisions on court often happen before there is enough time to explain them.</p>
+              </article>
+
+              <p class="momentum-endnote">Keep moving · the body notices patterns before language catches up.</p>
+            </div>
           </div>
-          <div class="story-list">
-            <article class="story">
-              <div class="story-meta"><span>Varsity Basketball · Captain</span><time>2023—2025</time></div>
-              <h3>Reading the game while living inside it</h3>
-              <p>I captained our team through a rebuilding season that ended with a second-place regional finish. What stayed with me was learning to notice: where an opponent was becoming comfortable, when our energy was slipping, and what a teammate needed before the next possession. Leadership rarely arrived as one dramatic speech. Usually, it was a small adjustment made in time.</p>
-              <ul class="story-tags"><li>Leadership</li><li>Strategy</li><li>Zhuhai</li></ul>
-            </article>
-            <article class="story">
-              <div class="story-meta"><span>Ultimate Frisbee · Spirit Chair</span><time>2025—now</time></div>
-              <h3>Competing without outsourcing sportsmanship</h3>
-              <p>Ultimate introduced me to a sport where players are responsible for both competition and fair play. As Spirit Chair, I help lead drills, welcome newer players, and look after the culture around the team. It has made me think about spirit not as extra enthusiasm, but as part of how a group chooses to compete.</p>
-              <ul class="story-tags"><li>Team culture</li><li>Community</li><li>Nashville</li></ul>
-            </article>
-          </div>
-          <div class="photo-trail"><span>Future field notes</span><p>Match photographs, quiet practice moments, and stories from volleyball, tennis, and badminton can grow along this trail as I find them.</p></div>
         </section>
 
         <footer class="planet-footer"><p>Still mapping. Still becoming.</p><a href="#world-map">Return to the map ↑</a></footer>
