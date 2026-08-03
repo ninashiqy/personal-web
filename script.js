@@ -1,16 +1,12 @@
-let toastTimer;
 let landingUnlocked = false;
 let transitionInProgress = false;
 let birdsPaused = false;
 
 function initPlanet() {
   const welcomeScreen = document.querySelector(".welcome-screen");
-  const toast = document.querySelector(".discovery-toast");
-  const discoveries = document.querySelectorAll(".easter");
   const birds = [...document.querySelectorAll(".golden-bird")];
   const islands = [...document.querySelectorAll(".explore-screen > .island")];
   const islandLinks = [...document.querySelectorAll('.island-nav a[href^="#"]')];
-  const signalIsland = document.querySelector("#signal");
   const signalStoryScroller = document.querySelector(".signal-stories");
   const signalIndexLinks = [...document.querySelectorAll('.signal-index a[href^="#signal-"]')];
   const signalStories = [...document.querySelectorAll(".signal-stories .signal-story")];
@@ -178,21 +174,6 @@ function initPlanet() {
   window.addEventListener("wheel", lockLandingWheel, { passive: false });
   window.addEventListener("keydown", lockLandingKeys);
   window.addEventListener("scroll", () => restoreLandingLock(welcomeScreen), { passive: true });
-
-  discoveries.forEach((discovery) => {
-    discovery.addEventListener("mouseenter", showDiscovery);
-    discovery.addEventListener("focus", showDiscovery);
-  });
-
-  function showDiscovery(event) {
-    if (!toast) return;
-    window.clearTimeout(toastTimer);
-    toast.textContent = event.currentTarget.dataset.note;
-    toast.classList.add("is-visible");
-    toastTimer = window.setTimeout(() => {
-      toast.classList.remove("is-visible");
-    }, 2600);
-  }
 
   if (!prefersReducedMotion.matches && birds.length) {
     startBirdLife(birds);
@@ -378,21 +359,19 @@ function startBirdLife(birds) {
       let t = clamp(elapsed / state.duration, 0, 1);
 
       if (t >= 1) {
+        const overflow = elapsed - state.duration;
         state.position = state.path.end;
         state.previousVelocity = state.path.endVelocity;
         const shouldJoinFlock = flockAnchor && now < flockUntil && Math.random() > 0.3;
         const shouldLongFly = !shouldJoinFlock && Math.random() < state.longFlightChance;
         state.path = shouldJoinFlock ? makeFlockPath(flockAnchor, state) : makeLocalPath(state, state.position, shouldLongFly);
-        state.startedAt = now;
         state.duration = state.path.isLongFlight ? randomBetween(state.longSpeedMin, state.longSpeedMax) : randomBetween(state.speedMin, state.speedMax);
-        state.phase = randomBetween(0, Math.PI * 2);
-        state.glideBias = randomBetween(0.58, 0.76);
-        t = 0;
+        state.startedAt = now - Math.min(overflow, state.duration * 0.25);
+        t = clamp((now - state.startedAt) / state.duration, 0, 1);
       }
 
-      const easedT = easeInOutSine(t);
-      const point = cubicBezier(state.path.start, state.path.c1, state.path.c2, state.path.end, easedT);
-      const ahead = cubicBezier(state.path.start, state.path.c1, state.path.c2, state.path.end, clamp(easedT + 0.012, 0, 1));
+      const point = cubicBezier(state.path.start, state.path.c1, state.path.c2, state.path.end, t);
+      const ahead = cubicBezier(state.path.start, state.path.c1, state.path.c2, state.path.end, clamp(t + 0.012, 0, 1));
       const drift = Math.sin(now * state.windSpeed + state.phase) * state.wind;
       const tangentAngle = Math.atan2(ahead.y - point.y, ahead.x - point.x) * 180 / Math.PI;
       const bodyRoll = Math.sin(now * 0.0015 + state.phase) * state.roll;
@@ -404,7 +383,7 @@ function startBirdLife(birds) {
       state.position = currentPoint;
       state.rotation = state.rotation * 0.86 + (tangentAngle * 0.08 + bodyRoll) * 0.14;
       state.bird.style.zIndex = String(depthLayer(state, currentPoint, now));
-      setBirdPose(state, currentPoint, state.rotation, wingAngle(state, now, t));
+      setBirdPose(state, currentPoint, state.rotation, wingAngle(state, now));
     });
 
     rafId = requestAnimationFrame(tick);
@@ -488,7 +467,6 @@ function createBirdState(bird, index) {
     longSpeedMax: config.longSpeedMax,
     longFlightChance: config.longFlightChance,
     layerBase: config.layerBase,
-    glideBias: 0.66,
   };
 }
 
@@ -522,8 +500,8 @@ function makeContinuousPath(start, end, previousVelocity, bounds, longFlight = f
   const bend = randomBetween(longFlight ? -0.3 : -0.24, longFlight ? 0.3 : 0.24) * distance;
   const normal = { x: -exit.y, y: exit.x };
   const c1 = {
-    x: start.x + previous.x * distance * (longFlight ? 0.26 : 0.34) + normal.x * bend,
-    y: start.y + previous.y * distance * (longFlight ? 0.26 : 0.34) + normal.y * bend,
+    x: start.x + previous.x * distance * (longFlight ? 0.26 : 0.34),
+    y: start.y + previous.y * distance * (longFlight ? 0.26 : 0.34),
   };
   const c2 = {
     x: end.x - exit.x * distance * (longFlight ? 0.42 : 0.38) - normal.x * bend * 0.55,
@@ -577,11 +555,11 @@ function setBirdPose(state, point, rotation, wing) {
   state.rightWing.style.transform = `rotate(${wing}deg)`;
 }
 
-function wingAngle(state, now, t) {
+function wingAngle(state, now) {
   const flap = Math.sin(now * state.beat + state.phase);
   const flutter = Math.sin(now * state.beat * 2.17 + state.phase * 0.7) * 0.22;
-  const glideWindow = Math.sin(t * Math.PI * 4.7 + state.phase);
-  const glide = glideWindow > state.glideBias ? 0.28 : 1;
+  const glideWindow = (Math.sin(now * 0.00042 + state.phase * 0.8) + 1) / 2;
+  const glide = 1 - smoothstep(0.72, 0.92, glideWindow) * 0.72;
   return (9 + (flap + flutter) * 12) * glide;
 }
 
@@ -593,8 +571,9 @@ function clamp(value, min, max) {
   return Math.min(max, Math.max(min, value));
 }
 
-function easeInOutSine(value) {
-  return -(Math.cos(Math.PI * value) - 1) / 2;
+function smoothstep(edgeStart, edgeEnd, value) {
+  const progress = clamp((value - edgeStart) / (edgeEnd - edgeStart), 0, 1);
+  return progress * progress * (3 - 2 * progress);
 }
 
 function cubicBezier(start, c1, c2, end, t) {
