@@ -21,8 +21,6 @@ function initPlanet() {
   const momentumStories = [...document.querySelectorAll(".momentum-stories .momentum-story")];
   const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
 
-  initSeasonNotes();
-
   if (location.hash && document.querySelector(location.hash)?.classList.contains("island")) {
     landingUnlocked = true;
     document.body.classList.add("site-entered");
@@ -240,92 +238,6 @@ function initPlanet() {
       }
     }
   }
-}
-
-function initSeasonNotes() {
-  const seasonalLinks = [...document.querySelectorAll("[data-season]")];
-  if (!seasonalLinks.length) return;
-
-  const seasons = {
-    signal: {
-      label: "Spring · Signal",
-      subtitle: "Research",
-      description: "The season of beginnings. Where curiosity grows into questions, and questions turn into discoveries.",
-    },
-    commons: {
-      label: "Summer · Commons",
-      subtitle: "Leadership",
-      description: "The season of connection. Where people come together, ideas grow, and communities take shape.",
-    },
-    studio: {
-      label: "Autumn · Studio",
-      subtitle: "Art",
-      description: "The season of expression. Where observations become stories, and ideas find their own forms.",
-    },
-    momentum: {
-      label: "Winter · Momentum",
-      subtitle: "Sports",
-      description: "The season of resilience. Where challenges are embraced, and strength is built through persistence.",
-    },
-  };
-
-  const note = document.createElement("aside");
-  note.className = "season-note";
-  note.setAttribute("aria-hidden", "true");
-  note.innerHTML = '<p class="season-note-label"></p><p class="season-note-subtitle"></p><p class="season-note-description"></p>';
-  document.body.append(note);
-
-  const label = note.querySelector(".season-note-label");
-  const subtitle = note.querySelector(".season-note-subtitle");
-  const description = note.querySelector(".season-note-description");
-  let activeLink = null;
-  let hideTimer;
-
-  function showNote(link) {
-    const seasonName = link.dataset.season;
-    const season = seasons[seasonName];
-    if (!season) return;
-
-    window.clearTimeout(hideTimer);
-    activeLink = link;
-    note.dataset.season = seasonName;
-    label.textContent = season.label;
-    subtitle.textContent = season.subtitle;
-    description.textContent = season.description;
-    positionNote(link);
-    note.classList.add("is-visible");
-  }
-
-  function scheduleHide(link) {
-    window.clearTimeout(hideTimer);
-    hideTimer = window.setTimeout(() => {
-      if (activeLink !== link) return;
-      activeLink = null;
-      note.classList.remove("is-visible");
-    }, 90);
-  }
-
-  function positionNote(link) {
-    const rect = link.getBoundingClientRect();
-    const halfWidth = Math.min(148, (window.innerWidth - 32) / 2);
-    const center = Math.max(halfWidth + 16, Math.min(window.innerWidth - halfWidth - 16, rect.left + rect.width / 2));
-    note.style.setProperty("--season-note-left", `${center}px`);
-    note.style.setProperty("--season-note-top", `${rect.bottom + 12}px`);
-  }
-
-  seasonalLinks.forEach((link) => {
-    link.addEventListener("pointerenter", (event) => {
-      if (event.pointerType === "touch") return;
-      showNote(link);
-    });
-    link.addEventListener("pointerleave", () => scheduleHide(link));
-    link.addEventListener("focus", () => showNote(link));
-    link.addEventListener("blur", () => scheduleHide(link));
-  });
-
-  window.addEventListener("resize", () => {
-    if (activeLink) positionNote(activeLink);
-  }, { passive: true });
 }
 
 function startBirdLife(birds) {

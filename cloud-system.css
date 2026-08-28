@@ -29,6 +29,50 @@
   height: auto;
   filter: brightness(1.08) saturate(0.9);
   opacity: 0.3;
+  animation: faint-cloud-drift 46s linear infinite;
+  will-change: transform;
+}
+
+@keyframes faint-cloud-drift {
+  0% {
+    transform: translate3d(-1.5vw, 0, 0);
+    animation-timing-function: cubic-bezier(0.45, 0.05, 0.55, 0.95);
+  }
+
+  20% {
+    transform: translate3d(0.5vw, 0, 0);
+    animation-timing-function: cubic-bezier(0.37, 0, 0.63, 1);
+  }
+
+  38% {
+    transform: translate3d(2.4vw, 0, 0);
+    animation-timing-function: cubic-bezier(0.2, 0.1, 0.45, 1);
+  }
+
+  52% {
+    transform: translate3d(1.7vw, 0, 0);
+    animation-timing-function: cubic-bezier(0.55, 0, 0.75, 0.9);
+  }
+
+  71% {
+    transform: translate3d(-1vw, 0, 0);
+    animation-timing-function: cubic-bezier(0.3, 0.05, 0.65, 1);
+  }
+
+  88% {
+    transform: translate3d(-2vw, 0, 0);
+    animation-timing-function: cubic-bezier(0.42, 0, 0.58, 1);
+  }
+
+  100% {
+    transform: translate3d(-1.5vw, 0, 0);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .right-cloud-layer {
+    animation: none;
+  }
 }
 
 .cloud-system-copy {

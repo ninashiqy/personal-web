@@ -128,23 +128,90 @@ button {
 .nav-links {
   display: flex;
   align-items: center;
-  gap: clamp(1.8rem, 3.15vw, 3.35rem);
+  gap: clamp(2.7rem, 4.5vw, 5rem);
   font-size: 0.92rem;
   color: var(--ink-soft);
 }
 
-.nav-links a {
+.nav-links a,
+.island-nav > div a {
+  --nav-cloud-filter: blur(1.4px);
+  --nav-cloud-height: 5.4rem;
+  --nav-cloud-width: 9.4rem;
   position: relative;
+  isolation: isolate;
   display: grid;
   padding-block: 0.45rem;
 }
 
+.nav-links a::before,
+.island-nav > div a::before {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  z-index: 0;
+  width: var(--nav-cloud-width);
+  height: var(--nav-cloud-height);
+  background: var(--nav-cloud-image) center / 100% 100% no-repeat;
+  content: "";
+  filter: var(--nav-cloud-filter);
+  opacity: 0;
+  pointer-events: none;
+  transform: translate(-50%, -43%) scale(0.82);
+  transform-origin: center;
+  transition:
+    opacity 380ms ease,
+    transform 440ms cubic-bezier(0.22, 0.8, 0.3, 1);
+}
+
+.nav-links a:hover::before,
+.nav-links a:focus-visible::before,
+.island-nav > div a:hover::before,
+.island-nav > div a:focus-visible::before {
+  opacity: 0.78;
+  transform: translate(-50%, -50%) scale(1);
+}
+
+.nav-links a[data-season="signal"],
+.island-nav > div a[data-season="signal"] {
+  --nav-cloud-image: url("assets/spring-cloud.png");
+}
+
+.nav-links a[data-season="commons"],
+.island-nav > div a[data-season="commons"] {
+  --nav-cloud-image: url("assets/summer-cloud.png");
+  --nav-cloud-width: 10.2rem;
+}
+
+.nav-links a[data-season="studio"],
+.island-nav > div a[data-season="studio"] {
+  --nav-cloud-filter: blur(1.4px) saturate(0.9);
+  --nav-cloud-image: url("assets/autumn-cloud.png");
+}
+
+.nav-links a[data-season="momentum"],
+.island-nav > div a[data-season="momentum"] {
+  --nav-cloud-filter: blur(1.4px) saturate(0.85);
+  --nav-cloud-height: 5.5rem;
+  --nav-cloud-image: url("assets/winter-cloud.png");
+  --nav-cloud-width: 10.6rem;
+}
+
 .nav-links small {
+  position: relative;
+  z-index: 1;
   font-family: Georgia, "Times New Roman", serif;
   font-size: 0.65rem;
   font-style: italic;
   letter-spacing: 0.03em;
   opacity: 0.62;
+}
+
+.nav-links a > span,
+.island-nav > div a > span,
+.island-nav > div a > small {
+  position: relative;
+  z-index: 1;
 }
 
 .nav-links a::after {
@@ -164,124 +231,6 @@ button {
 .nav-links a:focus-visible::after {
   opacity: 1;
   transform: scaleX(1);
-}
-
-.season-note {
-  --season-accent: rgba(138, 162, 140, 0.42);
-  --season-glow: rgba(228, 195, 108, 0.2);
-  position: fixed;
-  top: var(--season-note-top, 4rem);
-  left: var(--season-note-left, 50%);
-  z-index: 40;
-  isolation: isolate;
-  width: min(18.5rem, calc(100vw - 2rem));
-  padding: 2rem 2.15rem 2.1rem;
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: 100% 100%;
-  color: var(--moss);
-  filter: drop-shadow(0 0 10px rgba(255, 252, 241, 0.58));
-  opacity: 0;
-  pointer-events: none;
-  transform: translate3d(-50%, 8px, 0);
-  transition:
-    opacity 380ms ease,
-    transform 420ms cubic-bezier(0.22, 0.8, 0.3, 1);
-}
-
-.season-note.is-visible {
-  opacity: 1;
-  transform: translate3d(-50%, 0, 0);
-}
-
-.season-note[data-season="signal"]::before,
-.season-note[data-season="commons"]::before,
-.season-note[data-season="studio"]::before {
-  position: absolute;
-  z-index: -1;
-  inset: -6%;
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: 100% 100%;
-  content: "";
-  filter: blur(1.4px);
-  opacity: 0.78;
-}
-
-.season-note[data-season="signal"] {
-  --season-accent: rgba(218, 140, 157, 0.6);
-  --season-glow: rgba(238, 174, 189, 0.3);
-}
-
-.season-note[data-season="signal"]::before {
-  background-image: url("assets/spring-cloud.png");
-}
-
-.season-note[data-season="commons"] {
-  --season-accent: rgba(102, 146, 103, 0.54);
-  --season-glow: rgba(137, 174, 126, 0.28);
-}
-
-.season-note[data-season="commons"]::before {
-  background-image: url("assets/summer-cloud.png");
-}
-
-.season-note[data-season="studio"] {
-  --season-accent: rgba(184, 91, 66, 0.52);
-  --season-glow: rgba(224, 172, 69, 0.25);
-}
-
-.season-note[data-season="studio"]::before {
-  background-image: url("assets/autumn-cloud.png");
-  filter: blur(1.4px) saturate(0.9);
-}
-
-.season-note[data-season="momentum"] {
-  --season-accent: rgba(112, 153, 174, 0.55);
-  --season-glow: rgba(209, 229, 230, 0.46);
-}
-
-.season-note[data-season="momentum"]::before {
-  position: absolute;
-  z-index: -1;
-  inset: 0 -6%;
-  background-image: url("assets/winter-cloud.png");
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: 100% 100%;
-  content: "";
-  filter: blur(1.4px) saturate(0.85);
-  opacity: 0.78;
-  transform: translateY(-0.65rem);
-}
-
-.season-note[data-season="momentum"] .season-note-description {
-  width: calc(100% + 2rem);
-  transform: translateX(-1rem);
-}
-
-.season-note-label {
-  margin: 0 0 0.34rem;
-  color: color-mix(in srgb, var(--moss) 78%, var(--season-accent));
-  font-size: 0.63rem;
-  font-weight: 700;
-  letter-spacing: 0.17em;
-  text-transform: uppercase;
-}
-
-.season-note-subtitle {
-  margin: 0 0 0.7rem;
-  font-family: Georgia, "Times New Roman", serif;
-  font-size: 1.05rem;
-  font-style: italic;
-}
-
-.season-note-description {
-  margin: 0;
-  color: rgba(38, 75, 63, 0.78);
-  font-family: Georgia, "Times New Roman", serif;
-  font-size: 0.88rem;
-  line-height: 1.55;
 }
 
 .world-stage {
@@ -966,7 +915,7 @@ body.site-entered { overflow: hidden; }
 
 .origin-entry p {
   margin: 0;
-  color: #684630;
+  color: #806047;
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
   font-size: clamp(0.86rem, 0.92vw, 0.96rem);
   font-weight: 400;
@@ -1015,7 +964,7 @@ body.site-entered { overflow: hidden; }
 
 .origin-signoff {
   margin: clamp(2.8rem, 4.5vh, 3.6rem) 0 0;
-  color: #684630;
+  color: #806047;
   font-family: Georgia, "Times New Roman", serif;
   font-size: clamp(1.15rem, 1.45vw, 1.4rem);
   font-style: italic;
