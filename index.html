@@ -15,10 +15,13 @@
     <main class="planet-shell" aria-live="polite">
       <section class="welcome-screen" aria-label="Welcome to Nina's Planet">
         <nav class="topbar" aria-label="Primary navigation">
-          <a class="brand" href="#" aria-label="Nina Shi home">
-            <span>Nina Shi</span>
-            <i aria-hidden="true"></i>
-          </a>
+          <div class="cover-home-group">
+            <a class="brand" href="#" aria-label="Nina Shi home">
+              <span>Nina Shi</span>
+              <i aria-hidden="true"></i>
+            </a>
+            <a class="origin-nav-link" href="#origin" data-action="enter-site"><span>Origin</span></a>
+          </div>
           <div class="nav-links" aria-label="Site sections">
             <a href="#signal" data-action="enter-site" data-season="signal"><span>Signal</span><small>Research</small></a>
             <a href="#commons" data-action="enter-site" data-season="commons"><span>Commons</span><small>Leadership</small></a>
@@ -136,7 +139,10 @@
 
       <section class="explore-screen" id="world-map" aria-label="Explore Nina's world">
         <nav class="island-nav" aria-label="Island navigation">
-          <a class="island-brand" href="#" data-action="exit-site">Nina's Planet</a>
+          <span class="island-home-group">
+            <a class="island-brand" href="#" data-action="exit-site">Nina's Planet</a>
+            <a class="origin-nav-link" href="#origin"><span>Origin</span></a>
+          </span>
           <div>
             <a href="#signal" data-season="signal"><span>Signal</span><small>Research</small></a>
             <a href="#commons" data-season="commons"><span>Commons</span><small>Leadership</small></a>
