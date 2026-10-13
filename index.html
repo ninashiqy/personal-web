@@ -169,11 +169,16 @@
             <p class="origin-greeting">Hi, I’m Nina.</p>
 
             <div class="origin-entry">
-              <p>Vanderbilt University<br />Mathematics · Class of 2029</p>
+              <p>Vanderbilt University · Class of 2029<br />Mathematics &amp; Generative AI</p>
               <p>This site, Nina's Planet, is my scrapbook of small obsessions — internships I've figured out along the way, leadership moments I've stepped into, performances I couldn't resist, and pages and pages of not knowing what comes next. But that's the beauty of it, isn't it?</p>
             </div>
 
             <p class="origin-signoff">Thanks for stopping by!</p>
+            <button class="origin-note-trigger" type="button" data-open-note aria-haspopup="dialog" aria-controls="private-note-dialog">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M20 11.5a8 8 0 0 1-8 8H5l-4 3V11.5a9.5 9.5 0 0 1 19 0Z"/><path d="M6 10h9M6 14h6"/></svg>
+              <span>Chat with me <small>Leave a little thought or suggestion</small></span>
+              <span aria-hidden="true">↗</span>
+            </button>
             <img class="origin-flourish" src="assets/origin-signature.png" alt="Nina’s signature" />
 
             <aside class="origin-coordinates" aria-label="Coordinates">
@@ -427,6 +432,39 @@
 
     </main>
 
+    <dialog class="private-note-dialog" id="private-note-dialog" aria-labelledby="private-note-title" aria-describedby="private-note-description">
+      <header class="note-header">
+        <div><p class="note-eyebrow">A little hello · Origin</p><h2 id="private-note-title">Chat with me</h2></div>
+        <button class="note-close" type="button" data-close-note aria-label="Close chat">×</button>
+      </header>
+      <div class="note-body">
+        <div class="note-greeting"><span class="note-avatar" aria-hidden="true">N</span><div><p>Hi! Anything catch your eye?</p><p>I’d love to hear a thought, a suggestion, or just a little hello.</p></div></div>
+        <p class="note-description" id="private-note-description">A private note to my inbox. I’ll read it when I’m back here — replies aren’t instant.</p>
+        <form id="private-note-form" action="https://formsubmit.co/ninashi0723@gmail.com" method="POST">
+          <input type="hidden" name="_subject" value="A private note from Nina’s Planet" />
+          <input type="hidden" name="_template" value="table" />
+          <div class="note-honeypot" aria-hidden="true"><label>Leave this empty<input name="_honey" type="text" tabindex="-1" autocomplete="off" /></label></div>
+          <div class="note-prompts" aria-label="Ideas for your note">
+            <button type="button" data-note-prompt="Something I liked: ">Something I liked</button>
+            <button type="button" data-note-prompt="A small suggestion: ">A suggestion</button>
+            <button type="button" data-note-prompt="Hi Nina! ">Just saying hi</button>
+          </div>
+          <label class="note-label" for="private-note-message">Your note</label>
+          <textarea id="private-note-message" name="message" rows="4" maxlength="2000" placeholder="What’s on your mind?" required autofocus></textarea>
+          <div class="note-count"><span>No account needed</span><span id="note-character-count">0 / 2000</span></div>
+          <details class="note-details"><summary>Add your name or email <span>(optional)</span></summary><div class="note-fields">
+            <label class="note-label" for="private-note-name">Name<input id="private-note-name" name="name" autocomplete="name" maxlength="80" placeholder="What should I call you?" /></label>
+            <label class="note-label" for="private-note-email">Email<input id="private-note-email" name="email" type="email" autocomplete="email" maxlength="254" placeholder="If you’d like a reply" /></label>
+          </div></details>
+          <p class="note-privacy">Only sent to my inbox, never posted on the site. Delivered through <a href="https://formsubmit.co/" target="_blank" rel="noreferrer">FormSubmit</a>.</p>
+          <button class="note-send" type="submit">Send note <span aria-hidden="true">↗</span></button>
+        </form>
+        <div class="note-receipt" id="note-receipt" hidden><p class="note-sent-message" id="note-sent-message"></p><p class="note-thanks">Thanks for leaving a little piece of your visit here.</p><button type="button" class="note-another" data-another-note>Leave another note</button></div>
+        <p class="note-status" id="note-status" role="status" aria-live="polite" aria-atomic="true"></p>
+        <a class="note-email-fallback" href="mailto:ninashi0723@gmail.com">Prefer email? Write to me directly.</a>
+      </div>
+    </dialog>
+    <script src="private-notes.js" defer></script>
     <script src="script.js" defer></script>
   </body>
 </html>

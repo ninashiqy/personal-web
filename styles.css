@@ -1590,3 +1590,70 @@ body.site-entered { overflow: hidden; }
   }
 
 }
+
+/* Private notes: a small invitation opens a quiet, conversational inbox. */
+.explore-screen > .island-origin.is-active { overflow-y: auto; }
+.origin-journal { padding-bottom: 10rem; }
+.origin-note-trigger {
+  display: flex; align-items: center; gap: .5rem; margin-top: .75rem; min-height: 44px;
+  padding: .4rem .65rem; border: 1px solid rgba(181,139,53,.24); border-radius: .4rem;
+  background: rgba(255,253,244,.25); color: var(--moss); cursor: pointer; text-align: left;
+  transition: background 180ms ease;
+}
+.origin-note-trigger:hover { background: rgba(255,253,244,.65); }
+.origin-note-trigger svg { width: 1rem; height: 1rem; flex-shrink: 0; }
+.origin-note-trigger > span:first-of-type { font-family: Georgia, serif; font-size: .85rem; font-style: italic; }
+.origin-note-trigger small { display: block; margin-top: .1rem; color: var(--ink-soft); font: .62rem/1.4 -apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif; }
+.origin-note-trigger > span:last-child { margin-left: .15rem; color: #806047; font-size: .8rem; }
+.private-note-dialog {
+  width: min(29rem, calc(100vw - 2rem)); max-height: calc(100svh - 2rem);
+  margin: auto; padding: 0; overflow: auto; border: 1px solid rgba(181,139,53,.28);
+  border-radius: 1.25rem; background: var(--paper); color: var(--moss);
+  box-shadow: 0 24px 90px rgba(20,40,30,.25);
+}
+.private-note-dialog::backdrop { background: rgba(28,45,35,.38); backdrop-filter: blur(5px); }
+.note-header { display: flex; align-items: center; justify-content: space-between; gap: 1rem; padding: 1.35rem 1.5rem; border-bottom: 1px solid var(--line); }
+.note-eyebrow { margin: 0 0 .45rem; color: #806047; font-size: .6rem; letter-spacing: .14em; text-transform: uppercase; }
+.note-header h2 { margin: 0; font: 400 1.85rem/1.1 Georgia,serif; letter-spacing: -.035em; }
+.note-close { display: grid; place-items: center; flex-shrink: 0; width: 2.5rem; height: 2.5rem; border: 1px solid var(--line); border-radius: 50%; background: transparent; color: var(--moss); font-size: 1.6rem; cursor: pointer; }
+.note-body { padding: 1.35rem 1.5rem; }
+.note-greeting { display: flex; align-items: flex-start; gap: .7rem; }
+.note-avatar { display: grid; place-items: center; flex-shrink: 0; width: 2rem; height: 2rem; border-radius: 50%; background: #e9dfbf; color: #806047; font: italic 1.2rem Georgia,serif; }
+.note-greeting > div { padding: .8rem 1rem; border-radius: .2rem 1rem 1rem; background: #eef0e6; }
+.note-greeting p { margin: 0; font-size: .84rem; line-height: 1.65; }
+.note-greeting p + p { margin-top: .35rem; }
+.note-description { margin: .8rem 0 1.25rem 2.7rem; color: var(--ink-soft); font-size: .7rem; line-height: 1.65; }
+.note-prompts { display: flex; flex-wrap: wrap; gap: .4rem; margin-bottom: 1.1rem; }
+.note-prompts button { padding: .55rem .7rem; border: 1px solid var(--line); border-radius: 2rem; background: transparent; color: var(--moss); font-size: .68rem; cursor: pointer; }
+.note-prompts button:hover, .note-close:hover { background: #eef0e6; }
+.note-label { display: block; color: var(--moss); font-size: .72rem; font-weight: 600; }
+.private-note-dialog textarea, .note-fields input {
+  display: block; width: 100%; margin-top: .45rem; padding: .85rem;
+  border: 1px solid rgba(38,75,63,.3); border-radius: .65rem; background: #fffef9;
+  color: var(--moss); font: 1rem/1.5 -apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+}
+.private-note-dialog textarea { min-height: 7rem; max-height: 15rem; resize: vertical; }
+.private-note-dialog textarea::placeholder, .note-fields input::placeholder { color: #687a6e; }
+.note-count { display: flex; justify-content: space-between; gap: .5rem; margin-top: .4rem; font-size: .63rem; color: var(--ink-soft); }
+.note-details { margin-top: 1.1rem; }
+.note-details summary { width: fit-content; padding: .35rem 0; font-size: .74rem; cursor: pointer; }
+.note-details summary span { color: var(--ink-soft); font-size: .66rem; }
+.note-fields { display: grid; gap: .8rem; padding-top: .65rem; }
+.note-privacy { margin: 1rem 0; color: var(--ink-soft); font-size: .65rem; line-height: 1.6; }
+.note-privacy a, .note-email-fallback { text-decoration: underline; text-underline-offset: .2em; }
+.note-send { display: flex; justify-content: space-between; width: 100%; padding: .85rem 1rem; border: 0; border-radius: .7rem; background: var(--moss); color: var(--paper); font-size: .83rem; cursor: pointer; }
+.note-send:hover { background: #345e4d; }
+.note-send:disabled { opacity: .65; cursor: wait; }
+.note-status { margin: .9rem 0; font-size: .78rem; line-height: 1.6; }
+.note-status:empty { display: none; }
+.note-email-fallback { display: inline-block; margin-top: 1rem; color: var(--ink-soft); font-size: .7rem; }
+.note-sent-message { margin: 0 0 1rem 2.7rem; padding: 1rem; border-radius: 1rem .2rem 1rem 1rem; background: var(--moss); color: var(--paper); white-space: pre-wrap; overflow-wrap: anywhere; font-size: .85rem; line-height: 1.6; }
+.note-thanks { margin: 0; font: italic 1.15rem/1.6 Georgia,serif; }
+.note-another { margin-top: 1rem; padding: .65rem .9rem; border: 1px solid var(--line); border-radius: .7rem; background: transparent; color: var(--moss); cursor: pointer; }
+.note-honeypot { display: none; }
+.origin-note-trigger:focus-visible, .private-note-dialog :focus-visible { outline: 2px solid #94712b; outline-offset: 4px; }
+@media (max-width: 560px) {
+  .origin-note-trigger { margin-top: .8rem; }
+  .note-header { padding: 1.1rem; }
+  .note-body { padding: 1.1rem; }
+}
