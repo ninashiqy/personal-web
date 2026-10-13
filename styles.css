@@ -864,6 +864,16 @@ body.site-entered { overflow: hidden; }
 .atlas-intro, .planet-footer { display: none; }
 .explore-screen > .island { display: none; }
 .explore-screen > .island.is-active { display: block; height: 100%; overflow-y: auto; }
+/* Reveal the next island over the current scene, just like the cover entrance. */
+.explore-screen > .island.is-departing {
+  display: block;
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  height: 100%;
+  pointer-events: none;
+}
+.explore-screen > .island.is-arriving { z-index: 1; }
 .explore-screen > .island-origin { height:100vh; height:100svh; min-height:0; padding:0; border:0; background:#e9dfbf; overflow:hidden; }
 .explore-screen > .island-origin.is-active { overflow-y:hidden; }
 .island-origin::before { position:fixed; z-index:0; inset:0; display:block; background:url("assets/origin-background.jpg") center / cover no-repeat; content:""; pointer-events:none; }
@@ -1076,9 +1086,10 @@ body.site-entered { overflow: hidden; }
   overflow-y: auto;
   scroll-behavior: smooth;
 }
-.island-signal::before { position:fixed; z-index:0; inset:0; display:block; background:linear-gradient(rgba(222,233,213,.2), rgba(247,243,232,.04)), url("assets/signal-island-background.png") center top / 100% auto no-repeat; content:""; filter:saturate(.9) sepia(.04) hue-rotate(12deg) brightness(1.015); -webkit-mask-image:linear-gradient(to bottom, #000 0%, #000 47%, transparent 76%); mask-image:linear-gradient(to bottom, #000 0%, #000 47%, transparent 76%); pointer-events:none; }
+/* Keep the illustration in one layer so its corner scenes never overlap. */
+.island-signal::before { position:fixed; z-index:0; inset:0; display:block; background:linear-gradient(rgba(222,233,213,.2), rgba(247,243,232,.04)), url("assets/signal-island-background.png") center / 100% 100% no-repeat; content:""; filter:saturate(.9) sepia(.04) hue-rotate(12deg) brightness(1.015); pointer-events:none; }
 .island-signal::after { position:fixed; z-index:1; inset:0; display:block; background:radial-gradient(ellipse 28% 24% at -5% -4%, rgba(226,151,168,.34), rgba(238,185,195,.14) 44%, transparent 76%), radial-gradient(ellipse 28% 24% at 105% -4%, rgba(226,151,168,.34), rgba(238,185,195,.14) 44%, transparent 76%), radial-gradient(ellipse 28% 24% at -5% 104%, rgba(226,151,168,.34), rgba(238,185,195,.14) 44%, transparent 76%), radial-gradient(ellipse 28% 24% at 105% 104%, rgba(226,151,168,.34), rgba(238,185,195,.14) 44%, transparent 76%), linear-gradient(rgba(232,168,182,.14), rgba(232,168,182,.14)); content:""; filter:blur(22px) saturate(.92); pointer-events:none; }
-.signal-haze { position:fixed; z-index:1; inset:0; background:linear-gradient(rgba(222,233,213,.17), rgba(247,243,232,.02)), url("assets/signal-island-background.png") center bottom / 100% auto no-repeat; filter:saturate(.9) sepia(.04) hue-rotate(12deg) brightness(1.015); -webkit-mask-image:linear-gradient(to bottom, transparent 24%, #000 58%, #000 100%); mask-image:linear-gradient(to bottom, transparent 24%, #000 58%, #000 100%); pointer-events:none; }
+.signal-haze { position:fixed; z-index:1; inset:0; background:linear-gradient(rgba(222,233,213,.17), rgba(247,243,232,.02)); filter:saturate(.9) sepia(.04) hue-rotate(12deg) brightness(1.015); -webkit-mask-image:linear-gradient(to bottom, transparent 24%, #000 58%, #000 100%); mask-image:linear-gradient(to bottom, transparent 24%, #000 58%, #000 100%); pointer-events:none; }
 .signal-intro { position:fixed; z-index:2; top:clamp(5.2rem, 9vh, 6.5rem); left:50%; width:min(42rem, 64vw); text-align:center; transform:translateX(-50%); }
 .signal-coordinate { margin-bottom:.45rem; color:rgba(38,75,63,.62); font-size:.64rem; font-weight:700; letter-spacing:.24em; text-transform:uppercase; }
 .signal-intro h2 { margin:0; color:rgba(38,75,63,.92); font-family:Georgia,"Times New Roman",serif; font-size:clamp(3.5rem, 5.5vw, 5.4rem); font-weight:500; line-height:.92; letter-spacing:-.035em; text-shadow:0 2px 20px rgba(255,253,244,.9); }
@@ -1303,7 +1314,6 @@ body.site-entered { overflow: hidden; }
   .origin-coordinates a span { font-size:.65rem; }
   .origin-coordinates a small { font-size:.52rem; }
 
-  .island-signal::before, .signal-haze { background-size:100% auto; }
   .signal-intro { top: 5.35rem; }
   .signal-intro h2 { font-size: 3.5rem; }
   .signal-intro blockquote { margin-top: .65rem; font-size: .88rem; }

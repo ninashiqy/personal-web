@@ -20,6 +20,16 @@ function initPlanet() {
   const momentumIndexLinks = [...document.querySelectorAll('.momentum-index a[href^="#momentum-"]')];
   const momentumStories = [...document.querySelectorAll(".momentum-stories .momentum-story")];
   const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
+  let islandArrivalAnimations = [];
+
+  function clearIslandArrival() {
+    islandArrivalAnimations.forEach((animation) => animation.cancel());
+    islandArrivalAnimations = [];
+    islands.forEach((island) => {
+      island.classList.remove("is-departing", "is-arriving");
+      island.inert = false;
+    });
+  }
 
   if (location.hash && document.querySelector(location.hash)?.classList.contains("island")) {
     landingUnlocked = true;
@@ -33,6 +43,7 @@ function initPlanet() {
     const exitTrigger = event.target.closest('[data-action="exit-site"]');
     if (exitTrigger) {
       event.preventDefault();
+      clearIslandArrival();
       landingUnlocked = false;
       document.body.classList.add("landing-locked");
       document.body.classList.remove("site-entered");
@@ -53,7 +64,8 @@ function initPlanet() {
       const targetHash = link.getAttribute("href");
       if (!targetHash || targetHash === "#" || !document.querySelector(targetHash)?.classList.contains("island")) return;
       event.preventDefault();
-      showIsland(targetHash);
+      if (link.getAttribute("aria-current") === "page") return;
+      showIsland(targetHash, true);
       history.pushState(null, "", targetHash);
     });
   });
@@ -158,15 +170,36 @@ function initPlanet() {
     momentumIndexLinks.forEach((link) => link.classList.toggle("is-current", link.getAttribute("href") === `#${closest?.id}`));
   }, { passive: true });
 
-  function showIsland(targetHash) {
+  function showIsland(targetHash, fadeIn = false) {
+    clearIslandArrival();
+    const previousIsland = islands.find((island) => island.classList.contains("is-active"));
     const islandId = targetHash.replace("#", "");
-    islands.forEach((island) => island.classList.toggle("is-active", island.id === islandId));
     islandLinks.forEach((link) => {
       if (link.getAttribute("href") === targetHash) link.setAttribute("aria-current", "page");
       else link.removeAttribute("aria-current");
     });
     const activeIsland = islands.find((island) => island.id === islandId);
-    if (activeIsland) activeIsland.scrollTop = 0;
+    function activateIsland() {
+      islands.forEach((island) => island.classList.toggle("is-active", island.id === islandId));
+      if (activeIsland) activeIsland.scrollTop = 0;
+    }
+    activateIsland();
+    if (activeIsland && previousIsland && previousIsland !== activeIsland && fadeIn && !prefersReducedMotion.matches) {
+      // Keep the previous scene underneath so the reveal never passes through a blank color.
+      previousIsland.classList.add("is-departing");
+      previousIsland.inert = true;
+      activeIsland.classList.add("is-arriving");
+      const arrival = activeIsland.animate([{ opacity: 0 }, { opacity: 1 }], {
+        duration: 1400,
+        easing: "cubic-bezier(0.45, 0, 0.18, 1)",
+      });
+      islandArrivalAnimations = [arrival];
+      arrival.finished.then(() => {
+        if (islandArrivalAnimations.includes(arrival)) clearIslandArrival();
+      }).catch(() => {
+        // A newer navigation cancels the previous transition.
+      });
+    }
   }
 
   window.addEventListener("wheel", lockLandingWheel, { passive: false });
